@@ -2,14 +2,20 @@ const express = require('express');
 const keys = require('./config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
 const exphbs = require('express-handlebars');
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 let user = require("./models/user");
+
 
 const app = express();
 
 //Handlebars middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+
+// Use morgan for logging requests
+app.use(morgan("dev"));
 
 //Body Parser middleware
 app.use(express.json());
