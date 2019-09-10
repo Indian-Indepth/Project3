@@ -2,7 +2,8 @@ const express = require('express');
 const keys = require('./config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
 const exphbs = require('express-handlebars');
-
+const mongoose = require('mongoose');
+let user = require("./models/user");
 
 const app = express();
 
