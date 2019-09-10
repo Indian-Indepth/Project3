@@ -32,11 +32,15 @@ app.get('/', (req, res) =>{
 });
 
 app.post('/submit', (req, res) =>{
-  User.create(req.body)
-    .then((dbUser)=>{
-      res.json(dbUser);
+  User.create({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email
+  })
+    .then(function () {
+      res.redirect("/index");
     })
-    .catch((err) =>{res.json(err)});
+    .catch((err) =>{res.status(400).json(err)});
 });
 
 app.get('/index', (req, res) =>{
@@ -50,7 +54,8 @@ app.post('/charge', (req, res)=>{
     // console.log(req.body);
     // res.send('Hello')
     stripe.customers.create({
-    email: req.body.stripeEmail,
+    // email: req.body.stripeEmail,
+    email: User.email,
     source: req.body.stripeToken
   })
   .then((customer) => {
