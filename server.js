@@ -4,7 +4,7 @@ const stripe = require('stripe')(keys.stripeSecretKey);
 const exphbs = require('express-handlebars');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-let user = require("./models/user");
+let User = require("./models/user");
 
 
 const app = express();
@@ -24,8 +24,22 @@ app.use(express.urlencoded({extended:true}));
 //Set the static folder
 app.use(express.static(`${__dirname}/public`));
 
+// Connect to the Mongo DB
+mongoose.connect("mongodb://localhost/paymentdb", { useNewUrlParser: true });
 //Index Route
 app.get('/', (req, res) =>{
+  res.render('login');
+});
+
+app.post('/submit', (req, res) =>{
+  User.create(req.body)
+    .then((dbUser)=>{
+      res.json(dbUser);
+    })
+    .catch((err) =>{res.json(err)});
+});
+
+app.get('/index', (req, res) =>{
     res.render('index', {
         stripePublishableKey: keys.stripePublishableKey
     });
