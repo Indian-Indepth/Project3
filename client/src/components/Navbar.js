@@ -27,7 +27,7 @@ function Navbar() {
                 </Link>
 
                 <Link className="navbar-item" to="/features">
-                    Features
+                <span className="icon"><i className="fa fa-table"></i></span>&nbsp; Features
                 </Link>
                 <Link className="navbar-item" to="/pricing">
                     <span className="icon">
@@ -37,7 +37,7 @@ function Navbar() {
                 </Link>
 
                 <Link className="navbar-item" to="/aboutus">
-                    About us
+                <span className="icon"><i className="fa fa-info"></i></span>&nbsp;About us
                 </Link>
             </div>
 
@@ -68,11 +68,6 @@ function Navbar() {
             </div>
         </div>
     </nav>
-
-
-
-
-
   );
 }
 

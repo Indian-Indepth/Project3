@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import BgImage from "../assets/images/bg-image.png";
 import '../assets/css/style.css';
 
@@ -62,14 +63,14 @@ class SignUp extends Component {
                                 <div className="field">
                                     <label htmlFor="" className="checkbox is-rounded">
                                         <input type="checkbox" />
-                                        Remember me
+                                        &nbsp;Remember me
                                     </label>
                                 </div>
 
                                 <div className="field">
-                                    <button className="button is-rounded is-success is-fullwidth">
+                                    <Link to="/personalinfo" className="button is-rounded is-success is-fullwidth">
                                         Sign up
-                                    </button>
+                                    </Link>
                                 </div>
                                 <hr />
                                 <p className="has-text-centered has-text-grey-lighter is-size-5">
@@ -78,11 +79,11 @@ class SignUp extends Component {
                             </div>
 
                             <div className="field">
-                                <a href="" className="button is-rounded is-medium is-fullwidth">
+                                <Link to="" className="button is-rounded is-medium is-fullwidth">
                                     <img width="20px" alt='Google "G" Logo'
                                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                                     &nbsp;Login with Google
-                                </a>
+                                </Link>
                             </div>
                         </form>
                     </div>

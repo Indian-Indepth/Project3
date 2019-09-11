@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import BgImage from "../assets/images/bg-image.png";
 import '../assets/css/style.css';
 
@@ -18,12 +19,13 @@ class Home extends Component {
                   />
                 </div>
                 <div className='control'>
-                  <button
+                  <Link
+                    to="/signup"
                     type='submit'
                     className='button is-primary is-rounded is-large'
                   >
                     Sign up today
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
