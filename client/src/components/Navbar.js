@@ -1,22 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../assets/css/style.css';
 import Logo from '../assets/images/logo1.png'
 
 function Navbar() {
+
   return (
+
     <nav className="navbar has-shadow is-spaced">
         <div className="navbar-brand">
             <Link className="navbar-item" to="/">
                 <img src={Logo} alt="life to fit logo" width="75" />
             </Link>
-            <div className="navbar-burger burger" data-target="navbarExampleTransparentExample">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
 
+            <label
+              role="button"
+              className="navbar-burger burger"
+              aria-label="menu"
+              aria-expanded="false"
+              htmlFor="nav-toggle-state"
+            >
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+            </label>
+        </div>
+        <input type="checkbox" id="nav-toggle-state" />
         <div id="navbarExampleTransparentExample" className="navbar-menu">
             <div className="navbar-start">
                 <Link className="navbar-item" to="/">

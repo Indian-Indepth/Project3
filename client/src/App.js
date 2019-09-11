@@ -9,7 +9,12 @@ import Home from "./pages/Home";
 import Pricing from "./pages/Pricing";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Message from "./pages/Message";
+import TraineeProfile from "./pages/TraineeProfile";
+import EditUserProfile from "./pages/EditUserProfile";
 import "./App.css";
+
+
 
 
 class App extends Component {
@@ -26,6 +31,9 @@ class App extends Component {
             <Route exact path='/personalinfo' component={SurveyPersonalInfo} />
             <Route exact path='/goal' component={SurveyGoal} />
             <Route exact path='/health' component={SurveyHealth} />
+            <Route exact path='/profile' component={TraineeProfile} />
+            <Route exact path='/message' component={Message} />
+            <Route exact path='/editprofile' component={EditUserProfile} />
           </Switch>
           <Footer/>
         </Router>

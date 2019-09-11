@@ -8,3 +8,18 @@
     width: 335px;
     margin: auto;
 }
+
+
+#nav-toggle-state {
+    display: none;
+  }
+
+  #nav-toggle-state:checked ~ .navbar-menu {
+    display: block;
+  }
+
+  @media screen and (max-width: 768px) {
+    #menu-toggle:checked + .nav-menu {
+      display: block;
+    }
+  }
