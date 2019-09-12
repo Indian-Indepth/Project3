@@ -12,7 +12,10 @@ const cookieParser = require("cookie-parser"); // parse cookie header
 const routes = require("./routes");
 const PORT = process.env.PORT || 4000;
 const app = express();
-
+var socket = require("socket.io");
+var server = app.listen(4001,()=>{
+    console.log("Chat app server is running on Port 4001");
+});
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -101,4 +104,11 @@ app.get("*", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
+});
+
+//socket setup
+
+var io = socket(server);
+io.on("connection", socket=>{
+  console.log("made socket connection");
 });
