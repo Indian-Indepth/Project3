@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Aside from "../components/Aside";
+import AsideTrainer from "../components/AsideTrainer";
 import "../assets/css/style.css";
 
-class YourTrainer extends Component {
+class YourClient extends Component {
   render() {
     return (
       <section className='main-content columns is-fullheight'>
-        <Aside />
+        <AsideTrainer />
         <div className='box column is-10 has-background-white-bis'>
           <div className='container'>
             <div className='section'>
@@ -43,4 +43,4 @@ class YourTrainer extends Component {
   }
 }
 
-export default YourTrainer;
+export default YourClient;

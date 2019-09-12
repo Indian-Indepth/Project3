@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import BgImage from "../assets/images/bg-image.png";
 import "../assets/css/style.css";
 
+
 class SignIn extends Component {
   static propTypes = {
     authenticated: PropTypes.bool.isRequired,
@@ -27,19 +28,7 @@ class SignIn extends Component {
       <section className='hero'>
         <div className='hero-body'>
           <div className='container'>
-            {/* <ul className='menu'>
-              <li>
-                <Link to='/'>Home</Link>
-              </li>
-              {authenticated ? (
-                <li onClick={this._handleLogoutClick}>Logout</li>
-              ) : (
-                <div>
-                  <li>google</li>
-                  <li>twitter</li>
-                </div>
-              )}
-            </ul> */}
+
             <div className='columns is-centered is-full'>
               <figure className='column image center is-hidden-mobile'>
                 <img src={BgImage} alt='background' width='10' />
@@ -52,6 +41,17 @@ class SignIn extends Component {
                         Welcome Back!
                       </span>
                     </div>
+                  </div>
+                  <div className="box">
+                  <div class="field">
+                  <label htmlFor='' className='label'>
+                        I am a ..
+                      </label>
+                  <input class="is-checkradio is-rtl" id="exampleRtlRadioInline1" type="radio" name="exampleRtlRadioInline" checked="checked"/>
+                  <label for="exampleRtlRadioInline1">Option 1</label>
+                  <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" name="exampleRtlRadioInline"/>
+                  <label for="exampleRtlRadioInline2">Option 2</label>
+                </div>
                   </div>
                   <div className='section'>
                     <div className='field'>

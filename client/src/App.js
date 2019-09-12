@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer"
 import SurveyPersonalInfo from "./components/SurveyPersonalInfo";
+import SurveyTrainerPersonalInfo from "./components/SurveyTrainerPersonalInfo";
+import SurveyTrainerExperience from "./components/SurveyTrainerExperience";
 import SurveyGoal from "./components/SurveyGoal";
 import SurveyHealth from "./components/SurveyHealth";
 import Home from "./pages/Home";
@@ -12,9 +14,16 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Message from "./pages/Message";
 import TraineeProfile from "./pages/TraineeProfile";
+import TrainerProfile from "./pages/TrainerProfile";
+import TrainerMessage from "./pages/TrainerMessage";
 import EditUserProfile from "./pages/EditUserProfile";
 import YourTrainer from "./pages/YourTrainer";
+import TrainerEditUserProfile from "./pages/TrainerEditProfile";
+import YourClient from "./pages/YourClient";
 import "./App.css";
+
+
+
 
 
 
@@ -97,12 +106,18 @@ class App extends Component {
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/pricing' component={Pricing} />
             <Route exact path='/personalinfo' component={SurveyPersonalInfo} />
+            <Route exact path='/trainer-personal-info' component={SurveyTrainerPersonalInfo} />
             <Route exact path='/goal' component={SurveyGoal} />
+            <Route exact path='/trainer-experience' component={SurveyTrainerExperience} />
             <Route exact path='/health' component={SurveyHealth} />
             <Route exact path='/profile' component={TraineeProfile} />
+            <Route exact path='/trainer-profile' component={TrainerProfile} />
             <Route exact path='/message' component={Message} />
+            <Route exact path='/trainer-message' component={TrainerMessage} />
             <Route exact path='/editprofile' component={EditUserProfile} />
+            <Route exact path='/trainer-editprofile' component={TrainerEditUserProfile} />
             <Route exact path='/yourtrainer' component={YourTrainer} />
+            <Route exact path='/yourclient' component={YourClient} />
           </Switch>
           <Footer/>
         </Router>
