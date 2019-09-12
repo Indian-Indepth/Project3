@@ -15,6 +15,7 @@ const DB_USER = "";
 const DB_PASSWORD = "SOME PASSWPORD";
 const MONGODB = {
   MONGODB_URI: `mongodb://raj:raj123@ds161764.mlab.com:61764/link-to-lift`
+  //MONGODB_URI : `mongodb://localhost/oauth`
 };
 
 const SESSION = {

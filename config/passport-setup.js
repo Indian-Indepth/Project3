@@ -30,14 +30,15 @@ passport.use(
   },async(accessToken,refreshToken,profile,done)=>{
     console.log(profile);
     const currentUser = await User.findOne({
-      socialId : profile._json.id
+      socialId : profile._json.sub
     });
+    console.log(profile);
     // create new user if the database doesn't have this user
     if (!currentUser) {
       const newUser = await new User({
         name: profile._json.name,
         screenName: profile._json.name,
-        socialId: profile._json.id,
+        socialId: profile._json.sub,
         profileImageUrl: profile._json.picture
       }).save();
       if (newUser) {
