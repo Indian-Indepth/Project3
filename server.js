@@ -9,7 +9,6 @@ const mongoose = require("mongoose");
 const keys = require("./config/keys");
 const cors = require("cors");
 const cookieParser = require("cookie-parser"); // parse cookie header
-//const profRoutes = require("./routes/profile-routes");
 const routes = require("./routes");
 const PORT = process.env.PORT || 4000;
 const app = express();
