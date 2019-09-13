@@ -30,6 +30,7 @@ function SurveyGoal() {
             <h1 className='section title is-4 has-text-centered is-hidden-mobile'>
               Your Goal and Expectations
             </h1>
+            <form>
             <article className='box'>
               <div className=''>
                 <div className='content'>
@@ -153,6 +154,8 @@ function SurveyGoal() {
                 </div>
               </div>
             </article>
+            </form>
+
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import "../assets/css/style.css";
 
 function Aside() {
   return (
+
     <aside className='box has-shadow menu column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile has-background-white'>
       <p className='menu-label'>General</p>
       <ul className='menu-list'>
@@ -56,6 +57,7 @@ function Aside() {
         </li>
       </ul>
     </aside>
+
   );
 }
 

@@ -27,6 +27,7 @@ function SurveyTrainerExperience() {
             <h1 className='section title is-4 has-text-centered is-hidden-mobile'>
               Your Experience
             </h1>
+            <form>
             <article className=' box  is-multiline'>
               <div className=' field is-horizontal'>
                 <div className='field-label is-normal'>
@@ -150,6 +151,8 @@ function SurveyTrainerExperience() {
                 </Link>
               </div>
             </article>
+            </form>
+
           </div>
         </div>
       </div>

@@ -62,6 +62,7 @@ class TraineeProfile extends Component {
           authenticated={authenticated}
           handleNotAuthenticated={this._handleNotAuthenticated}
         />
+
         <div className='box column is-10 has-background-white-bis'>
           <div className='container'>
             <div className='section'>
