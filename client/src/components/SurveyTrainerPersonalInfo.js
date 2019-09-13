@@ -79,7 +79,7 @@ function SurveyTrainerPersonalInfo() {
                         <div className='field is-expanded'>
                           <div className='field has-addons'>
                             <p className='control'>
-                              <p className='button is-static'>+1</p>
+                              <span className='button is-static'>+1</span>
                             </p>
                             <p className='control is-expanded'>
                               <input

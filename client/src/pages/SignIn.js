@@ -42,17 +42,6 @@ class SignIn extends Component {
                       </span>
                     </div>
                   </div>
-                  <div className="box">
-                  <div class="field">
-                  <label htmlFor='' className='label'>
-                        I am a ..
-                      </label>
-                  <input class="is-checkradio is-rtl" id="exampleRtlRadioInline1" type="radio" name="exampleRtlRadioInline" checked="checked"/>
-                  <label for="exampleRtlRadioInline1">Option 1</label>
-                  <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" name="exampleRtlRadioInline"/>
-                  <label for="exampleRtlRadioInline2">Option 2</label>
-                </div>
-                  </div>
                   <div className='section'>
                     <div className='field'>
                       <label htmlFor='' className='label'>
@@ -111,7 +100,7 @@ class SignIn extends Component {
                       className='button is-rounded is-medium is-fullwidth has-background-info has-text-white'
                       onClick={this._handleTwitterSignInClick}
                     >
-                      <i class="fab fa-twitter"></i>&emsp; Login in with Twitter
+                      <i className="fab fa-twitter"></i>&emsp; Login in with Twitter
                     </Link>
                   </div>
                   <div className='field '>

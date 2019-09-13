@@ -12,8 +12,10 @@ passport.serializeUser((user, done) => {
 
 // deserialize the cookieUserId to user in the database
 passport.deserializeUser((id, done) => {
+  console.log('Deserialize User');
   User.findById(id)
     .then(user => {
+      console.log(user);
       done(null, user);
     })
     .catch(e => {
@@ -28,18 +30,17 @@ passport.use(
       clientSecret:keys.GOOGLE_CLIENT_SECRET,
       callbackURL: '/auth/google/redirect'
   },async(accessToken,refreshToken,profile,done)=>{
-    console.log(profile);
     const currentUser = await User.findOne({
       socialId : profile._json.sub
     });
-    console.log(profile);
     // create new user if the database doesn't have this user
     if (!currentUser) {
       const newUser = await new User({
         name: profile._json.name,
         screenName: profile._json.name,
         socialId: profile._json.sub,
-        profileImageUrl: profile._json.picture
+        profileImageUrl: profile._json.picture,
+        userType: '',
       }).save();
       if (newUser) {
         done(null, newUser);
@@ -60,6 +61,7 @@ passport.use(
       callbackURL: "/auth/twitter/redirect"
     },
     async (token, tokenSecret, profile, done) => {
+      console.log('profile');
       // find current user in UserModel
       const currentUser = await User.findOne({
         socialId: profile._json.id_str
@@ -70,7 +72,8 @@ passport.use(
           name: profile._json.name,
           screenName: profile._json.screen_name,
           socialId: profile._json.id_str,
-          profileImageUrl: profile._json.profile_image_url
+          profileImageUrl: profile._json.profile_image_url,
+          userType: '',
         }).save();
         if (newUser) {
           done(null, newUser);

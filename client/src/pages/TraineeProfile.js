@@ -11,6 +11,7 @@ class TraineeProfile extends Component {
       twitterId: PropTypes.string,
       screenName: PropTypes.string,
       _id: PropTypes.string,
+      userType: PropTypes.string,
     }),
   };
 

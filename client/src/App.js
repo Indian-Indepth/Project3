@@ -22,13 +22,6 @@ import TrainerEditUserProfile from "./pages/TrainerEditProfile";
 import YourClient from "./pages/YourClient";
 import "./App.css";
 
-
-
-
-
-
-
-
 class App extends Component {
 
   static propTypes = {
@@ -38,6 +31,7 @@ class App extends Component {
       socialId: PropTypes.string,
       screenName: PropTypes.string,
       _id: PropTypes.string,
+      userType: PropTypes.string
     }),
   };
 
