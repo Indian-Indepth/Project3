@@ -27,6 +27,7 @@ function SurveyTrainerPersonalInfo() {
             <h1 className='section title is-4 has-text-centered is-hidden-mobile'>
               Your personal information
             </h1>
+            <form>
             <article className='box columns is-multiline'>
               <div className='column is-one-quarter'>
                 <figure className='image is-256x256 '>
@@ -163,6 +164,8 @@ function SurveyTrainerPersonalInfo() {
                 </div>
               </div>
             </article>
+            </form>
+
           </div>
         </div>
       </div>

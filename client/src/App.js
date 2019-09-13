@@ -18,9 +18,11 @@ import TrainerProfile from "./pages/TrainerProfile";
 import TrainerMessage from "./pages/TrainerMessage";
 import EditUserProfile from "./pages/EditUserProfile";
 import YourTrainer from "./pages/YourTrainer";
+import Progress from "./pages/Progress";
 import TrainerEditUserProfile from "./pages/TrainerEditProfile";
 import YourClient from "./pages/YourClient";
 import "./App.css";
+
 
 class App extends Component {
 
@@ -108,6 +110,7 @@ class App extends Component {
             <Route exact path='/trainer-profile' component={TrainerProfile} />
             <Route exact path='/message' component={Message} />
             <Route exact path='/trainer-message' component={TrainerMessage} />
+            <Route exact path='/progress' component={Progress} />
             <Route exact path='/editprofile' component={EditUserProfile} />
             <Route exact path='/trainer-editprofile' component={TrainerEditUserProfile} />
             <Route exact path='/yourtrainer' component={YourTrainer} />

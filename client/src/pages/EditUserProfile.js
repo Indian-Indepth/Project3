@@ -11,7 +11,8 @@ class EditUserProfile extends Component {
           <div className='container'>
             <div className='section'>
               <div className='box'>
-                <article className='media'>
+              <form>
+              <article className='media'>
                   <div className='media-left'>
                     <figure className='image is-256x256'>
                       <img
@@ -139,6 +140,8 @@ class EditUserProfile extends Component {
                     </div>
                   </div>
                 </article>
+              </form>
+
               </div>
             </div>
           </div>

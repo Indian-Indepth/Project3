@@ -30,6 +30,7 @@ function SurveyHealth() {
             <h1 className='section title is-4 has-text-centered is-hidden-mobile'>
               Your Health Information
             </h1>
+            <form>
             <article className='box'>
               <div className=''>
                 <div className='content'>
@@ -173,6 +174,8 @@ function SurveyHealth() {
                 </div>
               </div>
             </article>
+            </form>
+
           </div>
         </div>
       </div>

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Aside from "../components/Aside";
 import "../assets/css/style.css";
+import NavTrainee from "../components/NavTrainee";
 
 class Message extends Component {
   render() {
     return (
       <section className='main-content columns is-fullheight'>
+      <NavTrainee/>
       <Aside/>
         <div className='box column is-10 has-background-white-bis'>
           <section className='section'>
