@@ -1,66 +1,66 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Aside from "../components/Aside";
+// import PropTypes from "prop-types";
+import AsideTrainer from "../components/AsideTrainer";
 import "../assets/css/style.css";
 
-class TraineeProfile extends Component {
-  static propTypes = {
-    user: PropTypes.shape({
-      name: PropTypes.string,
-      profileImageUrl: PropTypes.string,
-      twitterId: PropTypes.string,
-      screenName: PropTypes.string,
-      _id: PropTypes.string,
-      userType: PropTypes.string,
-    }),
-  };
 
-  state = {
-    user: {},
-    error: null,
-    authenticated: false,
-  };
+class TrainerProfile extends Component {
+//   static propTypes = {
+//     user: PropTypes.shape({
+//       name: PropTypes.string,
+//       profileImageUrl: PropTypes.string,
+//       twitterId: PropTypes.string,
+//       screenName: PropTypes.string,
+//       _id: PropTypes.string,
+//     }),
+//   };
 
-  componentDidMount() {
-    // Fetch does not send cookies. So you should add credentials: 'include'
-    fetch("http://localhost:4000/auth/login/success", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-      },
-    })
-      .then(response => {
-        if (response.status === 200) return response.json();
-        throw new Error("failed to authenticate user");
-      })
-      .then(responseJson => {
-        this.setState({
-          authenticated: true,
-          user: responseJson.user,
-        });
-      })
-      .catch(error => {
-        this.setState({
-          authenticated: false,
-          error: "Failed to authenticate user",
-        });
-      });
-  }
+//   state = {
+//     user: {},
+//     error: null,
+//     authenticated: false,
+//   };
 
-  _handleNotAuthenticated = () => {
-    this.setState({ authenticated: false });
-  };
+//   componentDidMount() {
+//     // Fetch does not send cookies. So you should add credentials: 'include'
+//     fetch("http://localhost:4000/auth/login/success", {
+//       method: "GET",
+//       credentials: "include",
+//       headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json",
+//         "Access-Control-Allow-Credentials": true,
+//       },
+//     })
+//       .then(response => {
+//         if (response.status === 200) return response.json();
+//         throw new Error("failed to authenticate user");
+//       })
+//       .then(responseJson => {
+//         this.setState({
+//           authenticated: true,
+//           user: responseJson.user,
+//         });
+//       })
+//       .catch(error => {
+//         this.setState({
+//           authenticated: false,
+//           error: "Failed to authenticate user",
+//         });
+//       });
+//   }
+
+//   _handleNotAuthenticated = () => {
+//     this.setState({ authenticated: false });
+//   };
 
   render() {
-    const { authenticated } = this.state;
+    //const { authenticated } = this.state;
     return (
       <section className='main-content columns is-fullheight'>
-        <Aside
-          authenticated={authenticated}
-          handleNotAuthenticated={this._handleNotAuthenticated}
+        <AsideTrainer
+        //   authenticated={authenticated}
+        //   handleNotAuthenticated={this._handleNotAuthenticated}
         />
         <div className='box column is-10 has-background-white-bis'>
           <div className='container'>
@@ -69,7 +69,11 @@ class TraineeProfile extends Component {
                 <article className='media'>
                   <div className='media-left'>
                     <figure className='image is-256x256'>
-                      {authenticated ? (
+                    <img
+                          src='https://bulma.io/images/placeholders/256x256.png'
+                          alt='avatar'
+                        />
+                      {/* {authenticated ? (
                         <img
                           src={this.state.user.profileImageUrl}
                           alt='avatar'
@@ -79,7 +83,7 @@ class TraineeProfile extends Component {
                           src='https://bulma.io/images/placeholders/256x256.png'
                           alt='avatar'
                         />
-                      )}
+                      )} */}
                     </figure>
                     <div className='section file is-centered'>
                       <label className='file-label'>
@@ -100,7 +104,8 @@ class TraineeProfile extends Component {
                   <div className='media-content'>
                     <div className='content'>
                       <section className='section'>
-                        <h1 className='title'>{this.state.user.screenName}</h1>
+                      <h1 className='title'>John Trainer</h1>
+                        {/* <h1 className='title'>{this.state.user.screenName}</h1> */}
                         <small>johnsmith@gmail.com</small>
                         <hr />
                         <h6 className='has-text-weight-light'>
@@ -168,4 +173,4 @@ class TraineeProfile extends Component {
   }
 }
 
-export default TraineeProfile;
+export default TrainerProfile;
