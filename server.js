@@ -111,4 +111,10 @@ app.listen(PORT, () => {
 var io = socket(server);
 io.on("connection", socket=>{
   console.log("made socket connection");
+
+  socket.on('chat',(data)=>{
+    io.sockets.emit("chat",data);
+
+  })
+
 });
