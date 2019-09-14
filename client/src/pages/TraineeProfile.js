@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Aside from "../components/Aside";
+import BottomNavTrainee from "../components/BottomNavTrainee";
 import "../assets/css/style.css";
 
 class TraineeProfile extends Component {
@@ -67,8 +68,8 @@ class TraineeProfile extends Component {
           <div className='container'>
             <div className='section'>
               <div className='box'>
-                <article className='media'>
-                  <div className='media-left'>
+                <article className='box columns is-multiline'>
+                  <div className='column is-one-quarter'>
                     <figure className='image is-256x256'>
                       {authenticated ? (
                         <img
@@ -98,7 +99,8 @@ class TraineeProfile extends Component {
                       </label>
                     </div>
                   </div>
-                  <div className='media-content'>
+
+                  <div className='column auto'>
                     <div className='content'>
                       <section className='section'>
                         <h1 className='title'>{this.state.user.screenName}</h1>
@@ -164,6 +166,7 @@ class TraineeProfile extends Component {
             </div>
           </div>
         </div>
+        <BottomNavTrainee/>
       </section>
     );
   }

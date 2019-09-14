@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AsideTrainer from "../components/AsideTrainer";
 import "../assets/css/style.css";
+import BottomNavTrainer from "../components/BottomNavTrainer";
 
 class YourClient extends Component {
   render() {
@@ -38,6 +39,7 @@ class YourClient extends Component {
             </div>
           </div>
         </div>
+        <BottomNavTrainer/>
       </section>
     );
   }
