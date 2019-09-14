@@ -17,7 +17,18 @@ export default {
   },
   // Saves a user to the database
   saveUser: function(userData) {
-    return axios.post(server_url+"/api/users", userData);
+    let options = {
+      url: server_url+"/api/users/"+userData._id,
+      data: userData,
+      method: 'POST',
+      withCredentials: true,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },
+    };
+    return axios(options);
   },
   loginSuccess: function () {
     let options = {

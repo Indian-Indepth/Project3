@@ -20,10 +20,7 @@ class SelectUserType extends Component {
     event.preventDefault()
     this.props.user.userType = this.state.userType
     let user = this.props.user;
-    console.log("Form submitted!!!")
-    console.log(user);
     API.saveUser(user);
-
   }
 }
 

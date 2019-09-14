@@ -9,6 +9,8 @@ router.route("/")
 // Matches with "/api/users/:id"
 router
   .route("/:id")
+  .get(usersController.findById)
+  .post(usersController.updateAll)
   .delete(usersController.remove);
 
 module.exports = router;

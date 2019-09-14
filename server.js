@@ -23,8 +23,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Define API routes here
-app.use(routes);
 mongoose.set('useCreateIndex', true)
 // Connect to the Mongo DB
 mongoose.connect(
@@ -73,6 +71,9 @@ app.use(cors({
 
 // set up routes
 app.use("/auth", authRoutes);
+// Define API routes here
+app.use(routes);
+
 //app.use("/profile",profRoutes);
 
 const authCheck = (req, res, next) => {
