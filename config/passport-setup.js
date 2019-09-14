@@ -12,10 +12,8 @@ passport.serializeUser((user, done) => {
 
 // deserialize the cookieUserId to user in the database
 passport.deserializeUser((id, done) => {
-  console.log('Deserialize User');
   User.findById(id)
     .then(user => {
-      console.log(user);
       done(null, user);
     })
     .catch(e => {
@@ -61,7 +59,6 @@ passport.use(
       callbackURL: "/auth/twitter/redirect"
     },
     async (token, tokenSecret, profile, done) => {
-      console.log('profile');
       // find current user in UserModel
       const currentUser = await User.findOne({
         socialId: profile._json.id_str

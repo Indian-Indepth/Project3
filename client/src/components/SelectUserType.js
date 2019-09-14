@@ -1,67 +1,88 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
 import "../assets/css/style.css";
+import API from "../utils/API";
 
 class SelectUserType extends Component {
-  constructor() {
-    super();
-    this.state = {
-      selectedOption: ''
-    };
-  this.radioChange = this.radioChange.bind(this);
-}
 
-  radioChange(e) {
-    this.setState({
-      selectedOption: e.currentTarget.value
-    });
+  constructor(props){
+    super(props);
+
+    this.state = {
+      user: {},
+      error: null,
+      authenticated: false,
+    }
+
+  this.handleChange=(event)=>{
+    this.setState({userType: event.target.value})
   }
+  this.handleSubmit=(event, id)=> {
+    event.preventDefault()
+    this.props.user.userType = this.state.userType
+    let user = this.props.user;
+    console.log("Form submitted!!!")
+    console.log(user);
+    API.saveUser(user);
+
+  }
+}
 
   render(){
     return (
       <div className='box column'>
+
         <h1>Select your user type</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className='field'>
             <input
               className='is-checkradio is-rtl'
               value='Trainer'
               type='radio'
-              name='user_type'
-              checked={this.state.selectedOption === "Trainer"}
-               onChange={this.radioChange}
+              name='userType'
+              id='Trainer'
+              //checked={this.state.selectedOption === "Trainer"}
+               onChange={this.handleChange}
             />
-            &nbsp;<label htmlFor='trainer'>Trainer</label>&emsp;
+            &nbsp;<label htmlFor="Trainer">Trainer</label>&emsp;
             <input
               className='is-checkradio is-rtl'
               value='Trainee'
               type='radio'
-              name='user_type'
-              checked={this.state.selectedOption === "Trainee"}
-               onChange={this.radioChange}
+              name='userType'
+              id="Trainee"
+              //checked={this.state.selectedOption === "Trainee"}
+               onChange={this.handleChange}
             />
-            &nbsp;<label htmlFor='trainee'>Trainee</label>
+            &nbsp;<label htmlFor='Trainee'>Trainee</label>
           </div>
           <div className='field'>
-          {this.state.selectedOption === "Trainer" ? (
-            <Link
-              to='/trainer-personal-info'
+          {/* {this.renderRedirect()} */}
+          {/* {this.state.selectedOption === "Trainer" ? ( */}
+            <button
+
+              // to='/trainer-personal-info'
+
               className='button is-rounded is-success is-fullwidth'
+             // onClick={this.setRedirect}
+             type="submit"
             >
               Submit
-            </Link>
-          ):(<Link
+            </button>
+          {/* ):(<button
               to='/personalinfo'
               className='button is-rounded is-success is-fullwidth'
+              type="submit"
             >
               Submit
-            </Link>)}
+            </button>)} */}
 
           </div>
         </form>
       </div>
     );
   }
+
+
 
 }
 

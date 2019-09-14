@@ -4,7 +4,7 @@ import BottomNavTrainee from "../components/BottomNavTrainee";
 import "../assets/css/style.css";
 
 
-class Message extends Component {
+class TraineePayments extends Component {
   render() {
     return (
       <section className='main-content columns is-fullheight'>
@@ -14,12 +14,7 @@ class Message extends Component {
           <section className='section'>
             <div className='section notification is-primary'>
               <button className='delete'></button>
-              Primar lorem ipsum dolor sit amet, consectetur adipiscing elit
-              lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus
-              quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit
-              amet fringilla. Nullam gravida purus diam, et dictum
-               efficitur. Sit amet, consectetur adipiscing
-              elit
+              <div>This is client invoice.</div>
             </div>
 
           </section>
@@ -30,4 +25,4 @@ class Message extends Component {
   }
 }
 
-export default Message;
+export default TraineePayments;

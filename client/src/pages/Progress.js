@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Aside from "../components/Aside";
 import Chart from "../components/Chart";
 import "../assets/css/style.css";
+import BottomNavTrainee from "../components/BottomNavTrainee";
 
 class Progress extends Component {
   render() {
@@ -41,6 +42,7 @@ class Progress extends Component {
             </div>
           </section>
         </div>
+        <BottomNavTrainee/>
       </section>
     );
   }

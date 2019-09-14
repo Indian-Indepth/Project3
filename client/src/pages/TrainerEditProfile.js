@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AsideTrainer from "../components/AsideTrainer";
 import "../assets/css/style.css";
+import BottomNavTrainer from "../components/BottomNavTrainer";
 
 class TrainerEditUserProfile extends Component {
   render() {
@@ -11,8 +12,8 @@ class TrainerEditUserProfile extends Component {
           <div className='container'>
             <div className='section'>
               <div className='box'>
-                <article className='media'>
-                  <div className='media-left'>
+                <article className='box columns is-multiline'>
+                  <div className='column is-one-quarter'>
                     <figure className='image is-256x256'>
                       <img
                         src='https://bulma.io/images/placeholders/256x256.png'
@@ -35,7 +36,7 @@ class TrainerEditUserProfile extends Component {
                       </label>
                     </div>
                   </div>
-                  <div className='media-content'>
+                  <div className='column auto'>
                     <div className='content'>
                       <section className=''>
                         <div className='field'>
@@ -143,6 +144,7 @@ class TrainerEditUserProfile extends Component {
             </div>
           </div>
         </div>
+        <BottomNavTrainer/>
       </section>
     );
   }

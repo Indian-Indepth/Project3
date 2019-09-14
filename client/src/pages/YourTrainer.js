@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Aside from "../components/Aside";
 import "../assets/css/style.css";
+import BottomNavTrainee from "../components/BottomNavTrainee";
 
 class YourTrainer extends Component {
   render() {
@@ -38,6 +39,7 @@ class YourTrainer extends Component {
             </div>
           </div>
         </div>
+        <BottomNavTrainee/>
       </section>
     );
   }

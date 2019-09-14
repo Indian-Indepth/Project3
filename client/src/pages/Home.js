@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import BgImage from "../assets/images/bg-image.png";
 import "../assets/css/style.css";
 import SelectUserType from "../components/SelectUserType";
+import API from "../utils/API";
 
 class Home extends Component {
   static propTypes = {
@@ -24,18 +25,13 @@ class Home extends Component {
 
   componentDidMount() {
     // Fetch does not send cookies. So you should add credentials: 'include'
-    fetch("http://localhost:4000/auth/login/success", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-      },
-    })
+    API.loginSuccess()
       .then(response => {
-        if (response.status === 200) return response.json();
-        throw new Error("failed to authenticate user");
+        if (response.status === 200) {
+          return response.data;
+        }else {
+          throw new Error("failed to authenticate user");
+        }
       })
       .then(responseJson => {
         this.setState({
@@ -55,7 +51,6 @@ class Home extends Component {
     this.setState({ authenticated: false });
   };
 
-
   render() {
     const { authenticated } = this.state;
     return (
@@ -69,9 +64,7 @@ class Home extends Component {
               <div className='field has-addons '>
                 <div className='control is-expanded'>
                 {(this.state.user.userType === '')?
-                (<SelectUserType
-
-                />)
+                (<SelectUserType user={this.state.user} />)
                 :''
               }
                 {!authenticated ? (<input

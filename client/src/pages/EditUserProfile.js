@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Aside from "../components/Aside";
 import "../assets/css/style.css";
+import BottomNavTrainee from "../components/BottomNavTrainee";
 
 class EditUserProfile extends Component {
   render() {
@@ -12,8 +13,8 @@ class EditUserProfile extends Component {
             <div className='section'>
               <div className='box'>
               <form>
-              <article className='media'>
-                  <div className='media-left'>
+              <article className='box columns is-multiline'>
+                  <div className='column is-one-quarter'>
                     <figure className='image is-256x256'>
                       <img
                         src='https://bulma.io/images/placeholders/256x256.png'
@@ -36,7 +37,7 @@ class EditUserProfile extends Component {
                       </label>
                     </div>
                   </div>
-                  <div className='media-content'>
+                  <div className='column auto'>
                     <div className='content'>
                       <section className=''>
                         <div className='field'>
@@ -146,6 +147,7 @@ class EditUserProfile extends Component {
             </div>
           </div>
         </div>
+        <BottomNavTrainee/>
       </section>
     );
   }

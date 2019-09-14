@@ -22,6 +22,8 @@ import Progress from "./pages/Progress";
 import TrainerEditUserProfile from "./pages/TrainerEditProfile";
 import YourClient from "./pages/YourClient";
 import "./App.css";
+import TraineePayments from "./pages/TraineePayments";
+import API from "./utils/API";
 
 
 class App extends Component {
@@ -45,18 +47,22 @@ class App extends Component {
 
   componentDidMount() {
     // Fetch does not send cookies. So you should add credentials: 'include'
-    fetch("http://localhost:4000/auth/login/success", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-      },
-    })
+    // fetch("http://localhost:4000/auth/login/success", {
+    //   method: "GET",
+    //   credentials: "include",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     "Access-Control-Allow-Credentials": true,
+    //   },
+    // })
+    API.loginSuccess()
       .then(response => {
-        if (response.status === 200) return response.json();
-        throw new Error("failed to authenticate user");
+        if (response.status === 200) {
+          return response.data;
+        }else {
+          throw new Error("failed to authenticate user");
+        }
       })
       .then(responseJson => {
         this.setState({
@@ -97,7 +103,12 @@ class App extends Component {
             logout = {this._handleLogoutClick}
           />
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={Home}
+            authenticated = {authenticated}
+            handleNotAuthenticated = {this._handleNotAuthenticated}
+            user = {this.state.user}
+            logout = {this._handleLogoutClick}
+            />
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/pricing' component={Pricing} />
@@ -115,6 +126,7 @@ class App extends Component {
             <Route exact path='/trainer-editprofile' component={TrainerEditUserProfile} />
             <Route exact path='/yourtrainer' component={YourTrainer} />
             <Route exact path='/yourclient' component={YourClient} />
+            <Route exact path='/payments' component={TraineePayments} />
           </Switch>
           <Footer/>
         </Router>
