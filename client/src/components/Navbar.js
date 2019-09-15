@@ -5,8 +5,6 @@ import "../assets/css/style.css";
 import Logo from "../assets/images/logo1.png";
 
 function Navbar(props) {
-  console.log("props:");
-  console.log(props);
   const { authenticated } = props.authenticated;
 
   return (

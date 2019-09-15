@@ -4,7 +4,6 @@ import API from "../utils/API";
 import {Redirect} from "react-router-dom";
 
 class SelectUserType extends Component {
-
   constructor(props){
     super(props);
 
@@ -52,8 +51,7 @@ class SelectUserType extends Component {
               type='radio'
               name='userType'
               id='Trainer'
-              //checked={this.state.selectedOption === "Trainer"}
-               onChange={this.handleChange}
+              onChange={this.handleChange}
             />
             &nbsp;<label htmlFor="Trainer">Trainer</label>&emsp;
             <input
@@ -62,32 +60,17 @@ class SelectUserType extends Component {
               type='radio'
               name='userType'
               id="Trainee"
-              //checked={this.state.selectedOption === "Trainee"}
                onChange={this.handleChange}
             />
             &nbsp;<label htmlFor='Trainee'>Trainee</label>
           </div>
           <div className='field'>
-          {/* {this.renderRedirect()} */}
-          {/* {this.state.selectedOption === "Trainer" ? ( */}
             <button
-
-              // to='/trainer-personal-info'
-
               className='button is-rounded is-success is-fullwidth'
-             // onClick={this.setRedirect}
              type="submit"
             >
               Submit
             </button>
-          {/* ):(<button
-              to='/personalinfo'
-              className='button is-rounded is-success is-fullwidth'
-              type="submit"
-            >
-              Submit
-            </button>)} */}
-
           </div>
         </form>
       </div>
