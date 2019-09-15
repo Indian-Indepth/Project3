@@ -91,7 +91,7 @@ class SurveyHealth extends Component {
   render(){
     let redirect = null;
     if (this.state.submitted) {
-      redirect = <Redirect to='/trainee-payments' />;
+      redirect = <Redirect to='/payments' />;
     }
     return (
       <section className='hero'>

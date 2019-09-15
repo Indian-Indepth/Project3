@@ -70,5 +70,10 @@ export default {
       },
     };
     return axios(options);
-  }
+  },
+
+  //Packages
+  getPackages: function() {
+    return axios.get("/api/packages");
+  },
 };

@@ -22,7 +22,7 @@ import Progress from "./pages/Progress";
 import TrainerEditUserProfile from "./pages/TrainerEditProfile";
 import YourClient from "./pages/YourClient";
 import "./App.css";
-import TraineePayments from "./pages/TraineePayments";
+import Payments from "./pages/Payments";
 import API from "./utils/API";
 
 
@@ -126,7 +126,7 @@ class App extends Component {
             <Route exact path='/trainer-editprofile' component={TrainerEditUserProfile} />
             <Route exact path='/yourtrainer' component={YourTrainer} />
             <Route exact path='/yourclient' component={YourClient} />
-            <Route exact path='/payments' component={TraineePayments} />
+            <Route exact path='/payments' component={Payments} />
           </Switch>
           <Footer/>
         </Router>
