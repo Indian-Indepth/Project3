@@ -51,6 +51,11 @@ const userSchema = new Schema({
     trim: true
   },
 
+  nutritionGoals: {
+    type: String,
+    trim: true
+  },
+
   motivation: {
     type: String,
     trim: true
@@ -84,12 +89,10 @@ const userSchema = new Schema({
     type: String,
     trim: true
   },
-
   excerciseWeekly: {
     type: String,
     trim: true
   },
-
   tabaccoUse:{
     type: String,
     trim: true

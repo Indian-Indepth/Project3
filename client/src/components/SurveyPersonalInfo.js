@@ -1,10 +1,93 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
+import API from "../utils/API";
+import { Redirect } from "react-router-dom";
 
 class SurveyPersonalInfo extends Component {
+
+  state = {
+    user: {},
+    error: null,
+    authenticated: false,
+    submitted: false,
+  };
+
+  componentDidMount() {
+    // Fetch does not send cookies. So you should add credentials: 'include'
+    API.loginSuccess()
+      .then(response => {
+        if (response.status === 200) {
+          return response.data;
+        }else {
+          throw new Error("failed to authenticate user");
+        }
+      })
+      .then(responseJson => {
+        this.setState({
+          authenticated: true,
+          user: responseJson.user,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          authenticated: false,
+          error: "Failed to authenticate user",
+        });
+      });
+  }
+
+  _handleNotAuthenticated = () => {
+    this.setState({ authenticated: false });
+  };
+
+  _handleLogoutClick = () => {
+    // Logout using Twitter passport api
+    // Set authenticated state to false in the HomePage
+    window.open("http://localhost:4000/auth/logout", "_self");
+    this.props.handleNotAuthenticated();
+  };
+
+  handleChange = event => {
+    let user = this.state.user;
+    switch (event.target.name) {
+      case "name":
+        user.name = event.target.value;
+        break;
+      case "phoneNumber":
+        user.phoneNumber = event.target.value;
+        break;
+      case "height":
+        user.height = event.target.value;
+        break;
+      case "weight":
+        user.weight = event.target.value;
+        break;
+      default:
+    }
+
+  };
+
+  handleSubmit = (event, id) => {
+    event.preventDefault();
+    let user = this.state.user;
+    // console.log('Submit data:')
+    // console.log(user);
+    API.saveUser(user)
+      .then(response => {
+        // console.log('Response')
+        // console.log(response)
+        this.setState({ submitted: true });
+      })
+      .catch();
+  };
+
   render(){
+    let redirect = null;
+    if (this.state.submitted) {
+      redirect = <Redirect to='/goal' />;
+    }
     return (
       <section className='hero'>
+      {redirect}
         <div className='hero-body'>
           <div className='container'>
             <div className='box'>
@@ -15,15 +98,13 @@ class SurveyPersonalInfo extends Component {
                 >
                   <ul>
                     <li className='is-active'>
-                      <Link to='personalinfo' aria-current='page'>
-                        Personal Information
-                      </Link>
+                      <a href='personalinfo'>Personal Information</a>
                     </li>
                     <li>
-                      <Link to='goal'>Your Goal and Expectations</Link>
+                      <a href='goal'>Your Goal and Expectations</a>
                     </li>
                     <li>
-                      <Link to='health'>Your Health</Link>
+                      <a href='goal'>Your Health</a>
                     </li>
                   </ul>
                 </nav>
@@ -31,7 +112,7 @@ class SurveyPersonalInfo extends Component {
               <h1 className='section title is-4 has-text-centered is-hidden-mobile'>
                 Your personal information
               </h1>
-              <form>
+              <form onSubmit={this.handleSubmit}>
               <article className='box columns is-multiline'>
                 <div className='column is-one-quarter'>
                   <figure className='image is-256x256 '>
@@ -64,6 +145,8 @@ class SurveyPersonalInfo extends Component {
                           <div className='field'>
                             <p className='control is-expanded has-icons-left'>
                               <input
+                                name="name"
+                                onBlur={this.handleChange}
                                 className='input'
                                 type='text'
                                 placeholder='Name'
@@ -88,6 +171,8 @@ class SurveyPersonalInfo extends Component {
                               </p>
                               <p className='control is-expanded'>
                                 <input
+                                  onBlur={this.handleChange}
+                                  name="phoneNumber"
                                   className='input'
                                   type='tel'
                                   placeholder='Your phone number'
@@ -106,6 +191,8 @@ class SurveyPersonalInfo extends Component {
                         <div className='field-body'>
                           <div className='field is-expanded'>
                             <input
+                              onBlur={this.handleChange}
+                                  name="height"
                               className='input'
                               type='text'
                               placeholder='Height'
@@ -122,6 +209,8 @@ class SurveyPersonalInfo extends Component {
                         <div className='field-body'>
                           <div className='field is-expanded'>
                             <input
+                            onBlur={this.handleChange}
+                                  name="weight"
                               className='input'
                               type='text'
                               placeholder='Weight'
@@ -135,15 +224,15 @@ class SurveyPersonalInfo extends Component {
                     </section>
                   </div>
                   <div className=''>
-                    <Link
-                      to='/goal'
+                    <button
                       className='button  is-pulled-right is-warning is-large'
+                      type="submit"
                     >
                       Next&emsp;
                       <span>
                         <i className='fas fa-chevron-right'></i>
                       </span>
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </article>
