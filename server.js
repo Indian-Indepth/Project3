@@ -1,5 +1,6 @@
 const cookieSession = require("cookie-session");
 const express = require("express");
+const bodyParser = require("body-parser");
 const path = require("path");
 const passport = require("passport");
 const passportSetup = require("./config/passport-setup");
@@ -42,7 +43,7 @@ mongoose.connect(
   }
 );
 //connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
+ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/linktolift");
 
 app.use(
   cookieSession({

@@ -6,6 +6,9 @@ import '../assets/css/style.css';
 
 class SignUp extends Component {
 
+    handleLocalSignUpClick= () =>{
+        window.open("http://localhost:4000/auth/signup","_self");
+      };
 
     render(){
         return(
@@ -68,7 +71,7 @@ class SignUp extends Component {
                                 </div>
 
                                 <div className="field">
-                                    <Link to="/personalinfo" className="button is-rounded is-success is-fullwidth">
+                                    <Link to="" onClick={this._handleLocalSignUpClick} className="button is-rounded is-success is-fullwidth">
                                         Sign up
                                     </Link>
                                 </div>

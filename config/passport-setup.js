@@ -1,6 +1,7 @@
 const passport = require("passport");
 const TwitterStrategy = require("passport-twitter");
-const GoogleStrategy = require("passport-google-oauth2")
+const GoogleStrategy = require("passport-google-oauth2");
+const LocalSrategy = require("passport-local");
 const keys = require("./keys");
 const User = require("../models/user-model");
 
@@ -22,7 +23,7 @@ passport.deserializeUser((id, done) => {
 });
 
 
-passport.use(
+passport.use("local",
   new GoogleStrategy({
       clientID: keys.GOOGLE_CLIENT_ID,
       clientSecret:keys.GOOGLE_CLIENT_SECRET,
@@ -80,3 +81,29 @@ passport.use(
     }
   )
 );
+
+passport.use(
+  new LocalSrategy({
+     usernameField : 'email', 
+     passwordField: 'password',
+     passReqToCallback: true
+     
+   },async(req, email,password,done) =>{
+    const currentUser = await User.findOne({
+      email: email
+    });
+    if (!currentUser) {
+      const newUser = await new User({
+        name: req.body.username,
+        email:req.body.email,
+        password: encryptPassword(req.body.password)
+      }).save();
+      if (newUser) {
+        done(null, newUser);
+      }
+    }
+    done(null, currentUser);
+   } 
+  )
+  );
+

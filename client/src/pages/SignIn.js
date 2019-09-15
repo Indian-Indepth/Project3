@@ -19,6 +19,9 @@ class SignIn extends Component {
   _handleGoogleSignInClick = () => {
     window.open("http://localhost:4000/auth/google", "_self");
   };
+  _handleLocalSignInClick= () =>{
+    window.open("http://localhost:4000/auth/signin","_self");
+  };
 
 
 

@@ -28,6 +28,10 @@ router.get("/logout", (req, res) => {
   res.redirect(CLIENT_HOME_PAGE_URL);
 });
 
+//auth with local 
+
+//router.get("/signup", passport.authenticate("local"));
+
 // auth with twitter
 router.get("/twitter", passport.authenticate("twitter"));
 
@@ -52,6 +56,13 @@ router.get(
     successRedirect: CLIENT_HOME_PAGE_URL,
     failureRedirect: "/auth/login/failed"
   })
+);
+
+router.post("/signup", 
+ passport.authenticate("local",{
+  successRedirect : CLIENT_HOME_PAGE_URL,
+  failureRedirect: "/signup"
+})
 );
 
 module.exports = router;
