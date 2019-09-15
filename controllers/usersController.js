@@ -1,6 +1,5 @@
 const db = require("../models");
 
-
 // Defining methods
 module.exports = {
   findAll: function(req, res) {
