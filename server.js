@@ -62,12 +62,7 @@ app.use(cors({
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true // allow session cookie from browser to pass through
 }));
-//app.use(cors());
-/*app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});*/
+
 
 // set up routes
 app.use("/auth", authRoutes);

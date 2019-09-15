@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "../assets/css/style.css";
 import API from "../utils/API";
+import {Redirect} from "react-router-dom";
 
 class SelectUserType extends Component {
 
@@ -11,6 +12,7 @@ class SelectUserType extends Component {
       user: {},
       error: null,
       authenticated: false,
+      submitted: false,
     }
 
   this.handleChange=(event)=>{
@@ -20,14 +22,27 @@ class SelectUserType extends Component {
     event.preventDefault()
     this.props.user.userType = this.state.userType
     let user = this.props.user;
-    API.saveUser(user);
+    API.saveUser(user)
+    .then( response => {
+      this.setState({user: user});
+      this.setState({submitted:true});
+    })
+    .catch();
   }
 }
 
   render(){
+    let redirect = null;
+    if(this.state.submitted ) {
+      if(this.state.user.userType === 'Trainer') {
+        redirect = <Redirect to = "/trainer-personal-info" />
+      } else {
+        redirect = <Redirect to = "/personalinfo" />
+      }
+    }
     return (
       <div className='box column'>
-
+        {redirect}
         <h1>Select your user type</h1>
         <form onSubmit={this.handleSubmit}>
           <div className='field'>
