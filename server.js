@@ -15,6 +15,8 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 
 
+
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -69,7 +71,6 @@ app.use("/auth", authRoutes);
 // Define API routes here
 app.use(routes);
 
-//app.use("/profile",profRoutes);
 
 const authCheck = (req, res, next) => {
   if (!req.user) {

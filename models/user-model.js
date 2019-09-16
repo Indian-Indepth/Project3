@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -7,7 +8,9 @@ const userSchema = new Schema({
   socialId: String,
   profileImageUrl: String,
   userType: String,
+  password:{type: String, default : ""},
   phoneNumber: String,
+  email: {type : String, trim: true},
   specialize: {
     type: String,
     trim: true,
@@ -109,6 +112,15 @@ const userSchema = new Schema({
   }
 
 });
+
+userSchema.methods.encryptPassword = function(password){
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+};
+
+userSchema.methods.validUserPassword = function(password){
+  return bcrypt.compareSync(password, this.password);
+};
+
 
 const User = mongoose.model("user", userSchema);
 

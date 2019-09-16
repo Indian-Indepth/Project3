@@ -6,7 +6,39 @@ import '../assets/css/style.css';
 
 class SignUp extends Component {
 
-
+    constructor(){
+        super()
+        this.state={
+            name:"",
+            email:"",
+            password:"",
+            error:""
+        }
+    }
+    handleChange =(name) =>(event)=>{
+        this.setState({[name]: event.target.value}); 
+    }
+    clickSubmit= event =>{
+        event.preventDefault();
+        const{email,password} = this.state
+        const user ={
+            name : email,
+            email : email,
+            password: password
+        }
+        console.log(user);
+        fetch("http://localhost:4000/auth/signup",{
+            method:"POST",
+            headers: {
+                Accept:"application/json",
+                "Content-Type":"application:json"
+            }, 
+            body: JSON.stringify(user)
+        })
+        .then(response => {
+            return response.json() ;
+        })
+        .catch (err => console.log(err));    }
     render(){
         return(
             <section className="hero">
@@ -44,7 +76,7 @@ class SignUp extends Component {
                                     <label htmlFor="" className="label">Email</label>
                                     <div className="control has-icons-left">
                                         <input type="email" placeholder="e.g. johnsmith@gmail.com"
-                                            className="input is-rounded" required />
+                                            className="input is-rounded" required onChange={this.handleChange("email")} value={this.state.email} />
                                         <span className="icon is-small is-left">
                                             <i className="fa fa-envelope"></i>
                                         </span>
@@ -54,7 +86,8 @@ class SignUp extends Component {
                                     <label htmlFor="" className="label">Password</label>
                                     <div className="control has-icons-left">
                                         <input type="password" placeholder="*******" className="input is-rounded"
-                                            required />
+                                            required onChange={this.handleChange("password")}
+                                            value={this.state.password}/>
                                         <span className="icon is-small is-left">
                                             <i className="fa fa-lock"></i>
                                         </span>
@@ -68,7 +101,7 @@ class SignUp extends Component {
                                 </div>
 
                                 <div className="field">
-                                    <Link to="/personalinfo" className="button is-rounded is-success is-fullwidth">
+                                    <Link to="" className="button is-rounded is-success is-fullwidth" onClick={this.clickSubmit}>
                                         Sign up
                                     </Link>
                                 </div>

@@ -36,6 +36,7 @@ router.get("/twitter", passport.authenticate("twitter"));
 router.get("/google", passport.authenticate("google",{scope:['profile']}));
 
 
+
 // redirect to home page after successfully login via twitter
 router.get(
   "/twitter/redirect",
@@ -53,5 +54,12 @@ router.get(
     failureRedirect: "/auth/login/failed"
   })
 );
+
+router.post("/signup",passport.authenticate("local",
+{
+  successRedirect : CLIENT_HOME_PAGE_URL,
+  failureRedirect : "/signup"
+}));
+
 
 module.exports = router;
