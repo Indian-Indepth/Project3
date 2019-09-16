@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
 mongoose.set('useCreateIndex', true)
 // Connect to the Mongo DB
 mongoose.connect(
-  keys.MONGODB_URI,
+  keys.MONGODB_URI || process.env.MONGODB_URI,
   {
     useNewUrlParser: true,
     useFindAndModify: false,

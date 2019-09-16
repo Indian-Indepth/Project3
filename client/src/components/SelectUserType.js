@@ -40,9 +40,9 @@ class SelectUserType extends Component {
       }
     }
     return (
-      <div className='box column'>
+      <div className='box has-text-dark column'>
         {redirect}
-        <h1 className="subtitle has-text-centered">Select your user type</h1>
+        <h1 className="title is-5 has-text-centered">Select your user type</h1>
         <form onSubmit={this.handleSubmit}>
           <div className=' has-text-centered field'>
           <div className="box">
