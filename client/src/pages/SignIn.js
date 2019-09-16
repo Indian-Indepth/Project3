@@ -13,11 +13,11 @@ class SignIn extends Component {
     // Authenticate using via passport api in the backend
     // Open Twitter login page
     // Upon successful login, a cookie session will be stored in the client
-    window.open("http://localhost:4000/auth/twitter", "_self");
+    window.open("https://link-to-lift.herokuapp.com:4000/auth/twitter", "_self");
   };
 
   _handleGoogleSignInClick = () => {
-    window.open("http://localhost:4000/auth/google", "_self");
+    window.open("https://link-to-lift.herokuapp.com:4000/auth/google", "_self");
   };
 
 

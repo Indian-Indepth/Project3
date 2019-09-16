@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const server_url = 'http://localhost:4000';
+const server_url = 'https://link-to-lift.herokuapp.com';
 
 export default {
   // Gets all users

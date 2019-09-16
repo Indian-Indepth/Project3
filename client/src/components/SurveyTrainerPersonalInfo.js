@@ -42,7 +42,7 @@ class SurveyTrainerPersonalInfo extends Component {
     _handleLogoutClick = () => {
       // Logout using Twitter passport api
       // Set authenticated state to false in the HomePage
-      window.open("http://localhost:4000/auth/logout", "_self");
+      window.open("https://link-to-lift.herokuapp.com:4000/auth/logout", "_self");
       this.props.handleNotAuthenticated();
     };
 
