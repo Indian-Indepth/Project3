@@ -103,12 +103,7 @@ class App extends Component {
             logout = {this._handleLogoutClick}
           />
           <Switch>
-            <Route exact path='/' component={Home}
-            authenticated = {authenticated}
-            handleNotAuthenticated = {this._handleNotAuthenticated}
-            user = {this.state.user}
-            logout = {this._handleLogoutClick}
-            />
+            <Route exact path='/' component={Home} />
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/pricing' component={Pricing} />

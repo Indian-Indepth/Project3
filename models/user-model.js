@@ -7,6 +7,8 @@ const userSchema = new Schema({
   socialId: String,
   profileImageUrl: String,
   userType: String,
+  userSubType: String,
+  billingAddress: String,
   phoneNumber: String,
   specialize: {
     type: String,

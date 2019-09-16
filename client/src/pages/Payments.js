@@ -3,6 +3,8 @@ import Aside from "../components/Aside";
 import API from "../utils/API";
 import BottomNavTrainee from "../components/BottomNavTrainee";
 import "../assets/css/style.css";
+import DropIn from "braintree-web-drop-in-react";
+import { Redirect } from "react-router-dom";
 
 class Payments extends Component {
   state = {
@@ -12,7 +14,7 @@ class Payments extends Component {
     submitted: false,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     // Fetch does not send cookies. So you should add credentials: 'include'
     API.loginSuccess()
       .then(response => {
@@ -29,8 +31,8 @@ class Payments extends Component {
         });
         API.getPackages().then(pResponse => {
           if (pResponse.status === 200) {
-            let packageType={};
-            if(this.state.user.userType === 'Trainee') {
+            let packageType = {};
+            if (this.state.user.userType === "Trainee") {
               packageType.free = pResponse.data[0];
               packageType.paid = pResponse.data[1];
             } else {
@@ -40,10 +42,24 @@ class Payments extends Component {
             this.setState({
               package: packageType,
             });
+
+            // Get payment token
+            API.getBraintreeClientToken(this.state.user._id)
+               .then(PayResponse => {
+              if (PayResponse.status === 200) {
+                this.setState({
+                  clientToken: PayResponse.data.clientToken,
+                });
+              } else {
+                throw new Error("failed to get packages");
+              }
+            });
+
           } else {
             throw new Error("failed to get packages");
           }
         });
+
       })
       .catch(error => {
         this.setState({
@@ -64,103 +80,115 @@ class Payments extends Component {
     this.props.handleNotAuthenticated();
   };
 
-  handleChange = event => {
-    let user = this.state.user;
-    switch (event.target.name) {
-      case "currentExercise":
-        user.currentExercise = event.target.value;
-        break;
-      case "physicalLimit":
-        user.physicalLimit = event.target.value;
-        break;
-      case "currentActivities":
-        user.currentActivities = event.target.value;
-        break;
-      case "excerciseWeekly":
-        user.excerciseWeekly = event.target.value;
-        break;
-      case "tabaccoUse":
-        user.tabaccoUse = event.target.value;
-        break;
-      case "alcoholUse":
-        user.alcoholUse = event.target.value;
-        break;
-      case "medsHealth":
-        user.medsHealth = event.target.value;
-        break;
-      default:
-    }
-  };
-
   handleSubmit = (event, id) => {
     event.preventDefault();
-    let user = this.state.user;
-    // console.log('Submit data:')
-    // console.log(user);
-    API.saveUser(user)
-      .then(response => {
-        // console.log('Response')
-        // console.log(response)
-        this.setState({ submitted: true });
-      })
-      .catch();
   };
+
+  async pay() {
+    // Send the nonce to your server
+    const { nonce } = await this.instance.requestPaymentMethod();
+    API.processPayment(this.state.user._id, this.state.clientToken, nonce, this.state.package.paid.price)
+    .then(response => {
+      this.setState({ submitted: true });
+    })
+    .catch();
+  }
+
   render() {
-    return (
-      <section className='main-content columns is-fullheight'>
-        <Aside />
-        <div className='box column is-10 has-background-white-bis'>
-          <form onSubmit={this.handleSubmit}>
-            <article className='box'>
-              <div className=''>
-                <div className='content'>
-                  <section className='section'>
-                    <div className='field'>
-                      <label className='label'>Select your package:</label>
-                      <div className='control'>
-                        <div className="box">
-                          <input
-                            type='radio'
-                            onBlur={this.handleChange}
-                            name='user_sub_type'
-                            value='free'
-                          />
-                          &nbsp;Free - &nbsp;
-                            {(this.state.package) ? (this.state.package.free.description) : ''}
-                        </div>
-                        <div className="box">
-                          <input
-                            type='radio'
-                            onBlur={this.handleChange}
-                            name='user_sub_type'
-                            value='paid'
-                          />
-                          &nbsp;Paid - &nbsp;
-                            {(this.state.package) ? (this.state.package.paid.description) : ''}
+    let redirect = null;
+    if (this.state.submitted) {
+      redirect = <Redirect to='/' />;
+    }
+
+    if(!this.state.clientToken){
+      return (
+        <div>
+        {redirect}
+          <h1>Loading...</h1>
+        </div>
+      );
+    } else {
+      return (
+        <section className='main-content columns is-fullheight'>
+        {redirect}
+          <Aside />
+          <div className='box column is-10 has-background-white-bis'>
+            <form onSubmit={this.handleSubmit}>
+              <article className='box'>
+                <div className=''>
+                  <div className='content'>
+                    <section className='section'>
+                      <div className='field'>
+                        <label className='label'>Select your package:</label>
+                        <div className='control'>
+                          <div className='box'>
+                            <input
+                              type='radio'
+                              name='userSubType'
+                              value='free'
+                              id='free'
+                            />
+                            &nbsp; <label htmlFor="free">Free - &nbsp;
+                            {this.state.package
+                              ? this.state.package.free.description
+                              : ""}</label>
+                          </div>
+                          <div className='box'>
+                            <input
+                              type='radio'
+                              name='userSubType'
+                              value='paid'
+                              id='paid'
+                            />
+                            &nbsp; <label htmlFor="paid"> Paid - &nbsp;
+                            {this.state.package
+                              ? this.state.package.paid.description
+                              : ""}</label>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className=''>
-                      <button
-                        type='submit'
-                        className='button  is-pulled-right is-warning is-large'
-                      >
-                        Pay Now&emsp;
-                        <span>
-                          <i className='fas fa-chevron-right'></i>
-                        </span>
-                      </button>
-                    </div>
-                  </section>
+                      <div className="box">
+                        <div className='field'>
+                        Type your billing address here: <br />
+
+                          <textarea
+                            className='form-control'
+                            name='billingAddress'
+                            placeholder='Type your billing address here...'
+                            rows="7"
+                            cols='100'
+                          ></textarea>
+                          <input type="hidden" value={this.state.package.paid.price} />
+                        </div>
+                        <DropIn
+                          options={{ authorization: this.state.clientToken }}
+                          onInstance={instance => (this.instance = instance)}
+                        />
+                      </div>
+                      <div className=''>
+                        <button
+                          type='submit'
+                          onClick={this.pay.bind(this)}
+                          className='button is-pulled-right is-warning is-large'
+                        >
+                          Pay Now&emsp;
+                          <span>
+                            <i className='fas fa-chevron-right'></i>
+                          </span>
+                        </button>
+                      </div>
+                    </section>
+                  </div>
                 </div>
-              </div>
-            </article>
-          </form>
-        </div>
-        <BottomNavTrainee />
-      </section>
-    );
+              </article>
+            </form>
+          </div>
+          <BottomNavTrainee />
+        </section>
+      );
+    }
+
   }
 }
 

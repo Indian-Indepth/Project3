@@ -44,7 +44,6 @@ export default {
   },
   // Saves a user to the database
   saveTrainerPersonalInfo: function(userData) {
-    console.log(userData)
     let options = {
       url: server_url+"/api/trainer-personal-info/",
       data: userData,
@@ -76,4 +75,50 @@ export default {
   getPackages: function() {
     return axios.get("/api/packages");
   },
+
+  getBraintreeClientToken: function (userId) {
+    return axios.get(`${server_url}/api/braintree/getToken/${userId}`, {
+      method: "GET",
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+      },
+    });
+  },
+
+  processPayment: function (userId, token, nonce, price) {
+    const paymentData = {nonce: nonce, price: price};
+    return axios.post(`${server_url}/api/braintree/payment/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: 'application/json',
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        data: paymentData,
+    })
+        .then(response => {
+          console.log('API response payment');
+          console.log(response);
+          return response.json();
+        })
+        .catch(err => console.log(err));
+  },
+
+  createOrder: function (userId, token, createOrderData) {
+    return axios.post(`${server_url}/api/order/create/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: 'application/json',
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({order: createOrderData})
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+  }
+
 };
