@@ -24,7 +24,7 @@ class TraineeProfile extends Component {
 
   componentDidMount() {
     // Fetch does not send cookies. So you should add credentials: 'include'
-    fetch("https://link-to-lift.herokuapp.com:4000/auth/login/success", {
+    fetch("https://link-to-lift.herokuapp.com/auth/login/success", {
       method: "GET",
       credentials: "include",
       headers: {
