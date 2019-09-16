@@ -41,7 +41,7 @@ router.get(
   "/twitter/redirect",
   passport.authenticate("twitter", {
     successRedirect: CLIENT_HOME_PAGE_URL,
-    failureRedirect: "/auth/login/failed"
+    failureRedirect: "https://link-to-lift.herokuapp.com/auth/twitter/redirect"
   })
 );
 
@@ -50,7 +50,7 @@ router.get(
   "/google/redirect",
   passport.authenticate("google", {
     successRedirect: CLIENT_HOME_PAGE_URL,
-    failureRedirect: "/auth/login/failed"
+    failureRedirect: "https://link-to-lift.herokuapp.com/auth/google/redirect"
   })
 );
 
