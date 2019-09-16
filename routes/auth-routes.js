@@ -33,7 +33,7 @@ router.get("/twitter", passport.authenticate("twitter"));
 
 //auth with google
 
-router.get("/google", passport.authenticate("google",{scope:['profile']}));
+router.get("/google", passport.authenticate("google",{scope:['profile', 'email'] }));
 
 
 // redirect to home page after successfully login via twitter
