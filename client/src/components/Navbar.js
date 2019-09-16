@@ -45,6 +45,7 @@ function Navbar(props) {
             </span>
             &nbsp; Features
           </Link>
+
           <Link className='navbar-item' to='/pricing'>
             <span className='icon'>
               <i className='fas fa-money-check-alt'></i>

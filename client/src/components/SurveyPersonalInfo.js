@@ -9,6 +9,7 @@ class SurveyPersonalInfo extends Component {
     error: null,
     authenticated: false,
     submitted: false,
+
   };
 
   componentDidMount() {
@@ -47,6 +48,7 @@ class SurveyPersonalInfo extends Component {
   };
 
   handleChange = event => {
+
     let user = this.state.user;
     switch (event.target.name) {
       case "name":
@@ -81,6 +83,7 @@ class SurveyPersonalInfo extends Component {
   };
 
   render(){
+    const { authenticated } = this.state;
     let redirect = null;
     if (this.state.submitted) {
       redirect = <Redirect to='/goal' />;
@@ -104,7 +107,7 @@ class SurveyPersonalInfo extends Component {
                       <a href='goal'>Your Goal and Expectations</a>
                     </li>
                     <li>
-                      <a href='goal'>Your Health</a>
+                      <a href='health'>Your Health</a>
                     </li>
                   </ul>
                 </nav>
@@ -116,10 +119,17 @@ class SurveyPersonalInfo extends Component {
               <article className='box columns is-multiline'>
                 <div className='column is-one-quarter'>
                   <figure className='image is-256x256 '>
-                    <img
-                      src='https://bulma.io/images/placeholders/256x256.png'
-                      alt='avatar'
-                    />
+                  {authenticated ? (
+                        <img
+                          src={this.state.user.profileImageUrl}
+                          alt='avatar'
+                        />
+                      ) : (
+                        <img
+                          src='https://bulma.io/images/placeholders/256x256.png'
+                          alt='avatar'
+                        />
+                      )}
                   </figure>
                   <div className='section file is-centered'>
                     <label className='file-label'>
@@ -143,18 +153,20 @@ class SurveyPersonalInfo extends Component {
                         </div>
                         <div className='field-body'>
                           <div className='field'>
-                            <p className='control is-expanded has-icons-left'>
-                              <input
+                            <div className='control is-expanded has-icons-left'>
+                            {authenticated ? (
+                              <h1 className='title'>{this.state.user.name}</h1>
+                              ) : (<input
                                 name="name"
                                 onBlur={this.handleChange}
                                 className='input'
                                 type='text'
                                 placeholder='Name'
-                              />
+                              />)}
                               <span className='icon is-small is-left'>
                                 <i className='fas fa-user'></i>
                               </span>
-                            </p>
+                            </div>
                           </div>
                         </div>
                       </div>

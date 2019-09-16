@@ -42,20 +42,24 @@ class SelectUserType extends Component {
     return (
       <div className='box column'>
         {redirect}
-        <h1>Select your user type</h1>
+        <h1 className="subtitle has-text-centered">Select your user type</h1>
         <form onSubmit={this.handleSubmit}>
-          <div className='field'>
-            <input
-              className='is-checkradio is-rtl'
+          <div className=' has-text-centered field'>
+          <div className="box">
+          <input
+              className='is-checkradio is-large'
               value='Trainer'
               type='radio'
               name='userType'
               id='Trainer'
               onChange={this.handleChange}
             />
-            &nbsp;<label htmlFor="Trainer">Trainer</label>&emsp;
-            <input
-              className='is-checkradio is-rtl'
+            &nbsp;<label htmlFor="Trainer">Trainer</label>
+          </div>
+
+          <div className="box">
+          <input
+              className='is-checkradio is-largee'
               value='Trainee'
               type='radio'
               name='userType'
@@ -64,9 +68,11 @@ class SelectUserType extends Component {
             />
             &nbsp;<label htmlFor='Trainee'>Trainee</label>
           </div>
+
+          </div>
           <div className='field'>
             <button
-              className='button is-rounded is-success is-fullwidth'
+              className='button is-large is-success is-fullwidth'
              type="submit"
             >
               Submit
