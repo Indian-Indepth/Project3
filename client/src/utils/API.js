@@ -86,8 +86,8 @@ export default {
     });
   },
 
-  processPayment: function (userId, token, nonce, price) {
-    const paymentData = {nonce: nonce, price: price};
+  processPayment: function (userId, token, nonce, price, billingAddress) {
+    const paymentData = {nonce: nonce, price: price, billingAddress: billingAddress};
     return axios.post(`${server_url}/api/braintree/payment/${userId}`, {
         method: "POST",
         headers: {

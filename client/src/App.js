@@ -22,8 +22,11 @@ import Progress from "./pages/Progress";
 import TrainerEditUserProfile from "./pages/TrainerEditProfile";
 import YourClient from "./pages/YourClient";
 import "./App.css";
-import Payments from "./pages/Payments";
+//import Payments from "./pages/Payments";
 import API from "./utils/API";
+import TraineePayments from "./pages/TraineePayments";
+import TrainerPayments from "./pages/TrainerPayments";
+import Payments from "./pages/Payments";
 
 
 class App extends Component {
@@ -121,7 +124,13 @@ class App extends Component {
             <Route exact path='/trainer-editprofile' component={TrainerEditUserProfile} />
             <Route exact path='/yourtrainer' component={YourTrainer} />
             <Route exact path='/yourclient' component={YourClient} />
+            <Route exact path='/trainee-payments' component={TraineePayments} />
             <Route exact path='/payments' component={Payments} />
+            <Route exact path='/trainer-payments' component={()=><TrainerPayments
+            authenticated = {authenticated}
+            handleNotAuthenticated = {this._handleNotAuthenticated}
+            user = {this.state.user}
+            />} />
           </Switch>
           <Footer/>
         </Router>

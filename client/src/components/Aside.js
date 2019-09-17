@@ -52,7 +52,7 @@ function Aside() {
       <ul className='menu-list'>
         <li>
           <Link to="payments" className={
-              window.location.pathname === "/payments" ? "is-active has-background-primary" : " "
+              window.location.pathname === "/trainee-payments" ? "is-active has-background-primary" : " "
             }>Payments</Link>
         </li>
       </ul>

@@ -5,6 +5,8 @@ import BottomNavTrainee from "../components/BottomNavTrainee";
 import "../assets/css/style.css";
 import DropIn from "braintree-web-drop-in-react";
 import { Redirect } from "react-router-dom";
+import { saveAs } from 'file-saver';
+import axios from "axios";
 
 class Payments extends Component {
   state = {
@@ -12,6 +14,9 @@ class Payments extends Component {
     error: null,
     authenticated: false,
     submitted: false,
+    // name: '',
+    // receiptId: 0,
+    // price: 0,
   };
 
   async componentDidMount() {
@@ -80,14 +85,26 @@ class Payments extends Component {
     this.props.handleNotAuthenticated();
   };
 
+  handleChange = ({ target: { value, name }}) => this.setState({ [name]: value })
+
+  createAndDownloadPdf = () => {
+    axios.post('/create-pdf', this.state)
+      .then(() => axios.get('fetch-pdf', { responseType: 'blob' }))
+      .then((res) => {
+        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+        saveAs(pdfBlob, 'newPdf.pdf');
+      })
+  }
+
   handleSubmit = (event, id) => {
     event.preventDefault();
+
   };
 
   async pay() {
     // Send the nonce to your server
     const { nonce } = await this.instance.requestPaymentMethod();
-    API.processPayment(this.state.user._id, this.state.clientToken, nonce, this.state.package.paid.price)
+    API.processPayment(this.state.user._id, this.state.clientToken, nonce, this.state.package.paid.price, this.state.billingAddress)
     .then(response => {
       this.setState({ submitted: true });
     })
@@ -155,6 +172,7 @@ class Payments extends Component {
                           <textarea
                             className='form-control'
                             name='billingAddress'
+                            onBlur={this.handleChange}
                             placeholder='Type your billing address here...'
                             rows="7"
                             cols='100'
