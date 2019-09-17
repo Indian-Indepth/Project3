@@ -38,7 +38,7 @@ router.get("/google", passport.authenticate("google",{scope:['profile']}));
 
 // redirect to home page after successfully login via twitter
 router.get(
-  "/twitter/redirect",
+  "auth/twitter/callback",
   passport.authenticate("twitter", {
     successRedirect: CLIENT_HOME_PAGE_URL,
     failureRedirect: "login/failed"
