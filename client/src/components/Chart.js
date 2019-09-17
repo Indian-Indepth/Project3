@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Line } from 'react-chartjs-2';
 
 const data = {
+  //Load data from the database here 
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {

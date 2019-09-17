@@ -46,7 +46,7 @@ const userSchema = new Schema({
   },
 
   weight: {
-    type: String,
+    type: [String],
     trim: true,
   },
   fitnessGoal: {

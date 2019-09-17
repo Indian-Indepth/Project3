@@ -120,6 +120,7 @@ class Payments extends Component {
                       <div className='control'>
                         <div className="box">
                           <input
+                            className='is-checkradio is-rtl'
                             type='radio'
                             onBlur={this.handleChange}
                             name='user_sub_type'
@@ -130,6 +131,7 @@ class Payments extends Component {
                         </div>
                         <div className="box">
                           <input
+                            className='is-checkradio is-rtl'
                             type='radio'
                             onBlur={this.handleChange}
                             name='user_sub_type'
