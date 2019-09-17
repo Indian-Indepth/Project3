@@ -5,8 +5,6 @@ import BottomNavTrainee from "../components/BottomNavTrainee";
 import "../assets/css/style.css";
 import DropIn from "braintree-web-drop-in-react";
 import { Redirect } from "react-router-dom";
-import { saveAs } from 'file-saver';
-import axios from "axios";
 
 class Payments extends Component {
   state = {
@@ -86,15 +84,6 @@ class Payments extends Component {
   };
 
   handleChange = ({ target: { value, name }}) => this.setState({ [name]: value })
-
-  createAndDownloadPdf = () => {
-    axios.post('/create-pdf', this.state)
-      .then(() => axios.get('fetch-pdf', { responseType: 'blob' }))
-      .then((res) => {
-        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-        saveAs(pdfBlob, 'newPdf.pdf');
-      })
-  }
 
   handleSubmit = (event, id) => {
     event.preventDefault();

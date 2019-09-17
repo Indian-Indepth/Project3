@@ -8,9 +8,7 @@ const authRoutes = require("./routes/auth-routes");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
 const cors = require("cors");
-const pdfTemplate = require('./documents');
 const cookieParser = require("cookie-parser"); // parse cookie header
-//const profRoutes = require("./routes/profile-routes");
 const routes = require("./routes");
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -94,21 +92,6 @@ app.get("/", authCheck, (req, res) => {
     cookies: req.cookies
   });
 });
-
-
-app.post('/create-pdf', (req, res) => {
-  pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
-      if(err) {
-          res.send(Promise.reject());
-      }
-
-      res.send(Promise.resolve());
-  });
-});
-
-app.get('/fetch-pdf', (req, res) => {
-  res.sendFile(`${__dirname}/result.pdf`)
-})
 
 // Send every other request to the React app
 // Define any API routes before this runs

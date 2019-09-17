@@ -1,4 +1,4 @@
-module.exports = ({ name, price, receiptId }) => {
+module.exports = ({ name, price, receiptId, phone, billingAddress, txnId}) => {
    const today = new Date();
 return `
    <!doctype html>
@@ -86,7 +86,7 @@ return `
                   <td colspan="2">
                      <table>
                         <tr>
-                           <td class="title"><img  src="https://i2.wp.com/cleverlogos.co/wp-content/uploads/2018/05/reciepthound_1.jpg?fit=800%2C600&ssl=1"
+                           <td class="title"><img  src="../client/src/assets/images/logo1.png"
                               style="width:100%; max-width:156px;"></td>
                            <td>
                               Date: ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
@@ -100,10 +100,16 @@ return `
                      <table>
                         <tr>
                            <td>
-                              Customer name: ${name}
+                              Receipt number: ${receiptId}
                            </td>
                            <td>
-                              Receipt number: ${receiptId}
+                              Customer name: ${name} | ${phone}
+                           </td>
+                           <td>
+                              Billing address: ${billingAddress}
+                           </td>
+                           <td>
+                              Transaction Id: ${txnId}
                            </td>
                         </tr>
                      </table>

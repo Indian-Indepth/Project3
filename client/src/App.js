@@ -25,7 +25,7 @@ import "./App.css";
 //import Payments from "./pages/Payments";
 import API from "./utils/API";
 import TraineePayments from "./pages/TraineePayments";
-import TrainerPayments from "./pages/TrainerPayments";
+import Transactions from "./pages/Transactions";
 import Payments from "./pages/Payments";
 
 
@@ -126,7 +126,7 @@ class App extends Component {
             <Route exact path='/yourclient' component={YourClient} />
             <Route exact path='/trainee-payments' component={TraineePayments} />
             <Route exact path='/payments' component={Payments} />
-            <Route exact path='/trainer-payments' component={()=><TrainerPayments
+            <Route exact path='/transactions' component={()=><Transactions
             authenticated = {authenticated}
             handleNotAuthenticated = {this._handleNotAuthenticated}
             user = {this.state.user}
