@@ -29,7 +29,7 @@ router.get("/logout", (req, res) => {
 });
 
 // auth with twitter
-router.get("/twitter", passport.authenticate("twitter"));
+router.get("/auth/twitter", passport.authenticate("twitter"));
 
 //auth with google
 
@@ -38,7 +38,7 @@ router.get("/google", passport.authenticate("google",{scope:['profile']}));
 
 // redirect to home page after successfully login via twitter
 router.get(
-  "/twitter/callback",
+  "auth/twitter/callback",
   passport.authenticate("twitter", {
     successRedirect: CLIENT_HOME_PAGE_URL,
     failureRedirect: "login/failed"
