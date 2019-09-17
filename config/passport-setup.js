@@ -26,7 +26,7 @@ passport.use(
   new GoogleStrategy({
       clientID: keys.GOOGLE_CLIENT_ID,
       clientSecret:keys.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'https://link-to-lift.herokuapp.com/auth/google/redirect'
+      callbackURL: '/auth/google/redirect'
   },async(accessToken,refreshToken,profile,done)=>{
     const currentUser = await User.findOne({
       socialId : profile._json.sub

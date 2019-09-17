@@ -38,7 +38,7 @@ router.get("/google", passport.authenticate("google",{scope:['profile']}));
 
 // redirect to home page after successfully login via twitter
 router.get(
-  "/auth/twitter/callback",
+  "/twitter/callback",
   passport.authenticate("twitter", {
     successRedirect: CLIENT_HOME_PAGE_URL,
     failureRedirect: "login/failed"
@@ -47,7 +47,7 @@ router.get(
 
 // redirect to home page after successfully login via twitter
 router.get(
-  "https://link-to-lift.herokuapp.com/auth/google/redirect",
+  "/google/redirect",
   passport.authenticate("google", {
     successRedirect: CLIENT_HOME_PAGE_URL,
     failureRedirect: "/login/failed"
