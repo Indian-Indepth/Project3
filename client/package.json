@@ -8,6 +8,7 @@
     "braintree-web-drop-in-react": "^1.0.10",
     "bulma": "^0.7.5",
     "bulma-extensions": "^6.2.7",
+    "faker": "^4.1.0",
     "file-saver": "^2.0.2",
     "node-sass": "^4.12.0",
     "prop-types": "^15.6.2",

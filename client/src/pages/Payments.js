@@ -12,9 +12,7 @@ class Payments extends Component {
     error: null,
     authenticated: false,
     submitted: false,
-    // name: '',
-    // receiptId: 0,
-    // price: 0,
+    showing: false
   };
 
   async componentDidMount() {
@@ -101,6 +99,7 @@ class Payments extends Component {
   }
 
   render() {
+    const { showing } = this.state;
     let redirect = null;
     if (this.state.submitted) {
       redirect = <Redirect to='/' />;
@@ -133,6 +132,7 @@ class Payments extends Component {
                               name='userSubType'
                               value='free'
                               id='free'
+                              onChange={() => this.setState({ showing: false })}
                             />
                             &nbsp; <label htmlFor="free">Free - &nbsp;
                             {this.state.package
@@ -145,6 +145,7 @@ class Payments extends Component {
                               name='userSubType'
                               value='paid'
                               id='paid'
+                              onChange={() => this.setState({ showing: true })}
                             />
                             &nbsp; <label htmlFor="paid"> Paid - &nbsp;
                             {this.state.package
@@ -154,14 +155,14 @@ class Payments extends Component {
                         </div>
                       </div>
 
-                      <div className="box">
+                      <div className="box" style={{ display: (showing ? 'block' : 'none') }}>
                         <div className='field'>
                         Type your billing address here: <br />
 
                           <textarea
                             className='form-control'
                             name='billingAddress'
-                            onBlur={this.handleChange}
+                            onChange={this.handleChange}
                             placeholder='Type your billing address here...'
                             rows="7"
                             cols='100'
