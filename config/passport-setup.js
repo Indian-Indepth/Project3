@@ -56,7 +56,7 @@ passport.use(
     {
       consumerKey: keys.TWITTER_CONSUMER_KEY,
       consumerSecret: keys.TWITTER_CONSUMER_SECRET,
-      callbackURL: "/auth/twitter/callback"
+      callbackURL: "https://link-to-lift.herokuapp.com/auth/twitter/callback"
     },
     async (token, tokenSecret, profile, done) => {
       // find current user in UserModel
