@@ -41,16 +41,16 @@ router.get(
   "/twitter/redirect",
   passport.authenticate("twitter", {
     successRedirect: CLIENT_HOME_PAGE_URL,
-    failureRedirect: "https://link-to-lift.herokuapp.com/auth/twitter/redirect"
+    failureRedirect: "login/failed"
   })
 );
 
 // redirect to home page after successfully login via twitter
 router.get(
-  "/google/redirect",
+  "https://link-to-lift.herokuapp.com/auth/google/redirect",
   passport.authenticate("google", {
     successRedirect: CLIENT_HOME_PAGE_URL,
-    failureRedirect: "https://link-to-lift.herokuapp.com/auth/google/redirect"
+    failureRedirect: "/login/failed"
   })
 );
 
