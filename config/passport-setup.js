@@ -1,7 +1,7 @@
 const passport = require("passport");
 const TwitterStrategy = require("passport-twitter");
 const GoogleStrategy = require("passport-google-oauth2");
-const LocalStrategy = require ("passport-local");
+const LocalStrategy = require ("passport-local").Strategy;
 const keys = require("./keys");
 const User = require("../models/user-model");
 
@@ -90,10 +90,10 @@ passport.use(new LocalStrategy({
 },async (req, email,done,password) => {
   const currentUser = await User.findOne({
     email: email
-  });
+  }).then((currentUser)=>{
   // create new user if the database doesn't have this user
   if (!currentUser) {
-    const newUser = await new User({
+    const newUser = new User({
       name: email,
       screenName: email,
       email: email,
@@ -106,6 +106,7 @@ passport.use(new LocalStrategy({
     }
   }
   done(null, currentUser);
+})
 })
 );
 

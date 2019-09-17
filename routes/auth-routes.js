@@ -55,10 +55,11 @@ router.get(
   })
 );
 
+
 router.post("/signup",passport.authenticate("local",
 {
   successRedirect : CLIENT_HOME_PAGE_URL,
-  failureRedirect : "/signup"
+  failureRedirect : "/auth/login/failed"
 }));
 
 
