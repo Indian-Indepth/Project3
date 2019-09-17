@@ -22,8 +22,12 @@ import Progress from "./pages/Progress";
 import TrainerEditUserProfile from "./pages/TrainerEditProfile";
 import YourClient from "./pages/YourClient";
 import "./App.css";
-import Payments from "./pages/Payments";
+//import Payments from "./pages/Payments";
 import API from "./utils/API";
+import TraineePayments from "./pages/TraineePayments";
+import Transactions from "./pages/Transactions";
+import Payments from "./pages/Payments";
+import OurTrainer from "./pages/OurTrainer"
 
 
 class App extends Component {
@@ -115,13 +119,24 @@ class App extends Component {
             <Route exact path='/profile' component={TraineeProfile} />
             <Route exact path='/trainer-profile' component={TrainerProfile} />
             <Route exact path='/message' component={Message} />
-            <Route exact path='/trainer-message' component={TrainerMessage} />
+            <Route exact path='/trainer-message' component={()=><TrainerMessage
+              authenticated = {authenticated}
+            handleNotAuthenticated = {this._handleNotAuthenticated}
+            user = {this.state.user}
+            />} />
             <Route exact path='/progress' component={Progress} />
             <Route exact path='/editprofile' component={EditUserProfile} />
             <Route exact path='/trainer-editprofile' component={TrainerEditUserProfile} />
             <Route exact path='/yourtrainer' component={YourTrainer} />
             <Route exact path='/yourclient' component={YourClient} />
+            <Route exact path='/ourtrainer' component={OurTrainer} />
+            <Route exact path='/trainee-payments' component={TraineePayments} />
             <Route exact path='/payments' component={Payments} />
+            <Route exact path='/transactions' component={()=><Transactions
+            authenticated = {authenticated}
+            handleNotAuthenticated = {this._handleNotAuthenticated}
+            user = {this.state.user}
+            />} />
           </Switch>
           <Footer/>
         </Router>

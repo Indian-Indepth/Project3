@@ -9,7 +9,6 @@ const mongoose = require("mongoose");
 const keys = require("./config/keys");
 const cors = require("cors");
 const cookieParser = require("cookie-parser"); // parse cookie header
-//const profRoutes = require("./routes/profile-routes");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -98,6 +97,7 @@ app.get("/", authCheck, (req, res) => {
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
+
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);

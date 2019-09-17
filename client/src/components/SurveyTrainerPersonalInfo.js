@@ -81,6 +81,7 @@ class SurveyTrainerPersonalInfo extends Component {
     };
 
   render() {
+    const { authenticated } = this.state;
     let redirect = null;
     if (this.state.submitted) {
       redirect = <Redirect to='/trainer-experience' />;
@@ -113,10 +114,17 @@ class SurveyTrainerPersonalInfo extends Component {
                 <article className='box columns is-multiline'>
                   <div className='column is-one-quarter'>
                     <figure className='image is-256x256 '>
-                      <img
-                        src='https://bulma.io/images/placeholders/256x256.png'
-                        alt='placeholder'
-                      />
+                    {authenticated ? (
+                        <img
+                          src={this.state.user.profileImageUrl}
+                          alt='avatar'
+                        />
+                      ) : (
+                        <img
+                          src='https://bulma.io/images/placeholders/256x256.png'
+                          alt='avatar'
+                        />
+                      )}
                     </figure>
                     <div className='section file is-centered'>
                       <label className='file-label'>
@@ -145,16 +153,18 @@ class SurveyTrainerPersonalInfo extends Component {
                           <div className='field-body'>
                             <div className='field'>
                               <p className='control is-expanded has-icons-left'>
-                                <input
-                                  onBlur={this.handleChange}
-                                  name='name'
-                                  className='input'
-                                  type='text'
-                                  placeholder='Name'
-                                />
-                                <span className='icon is-small is-left'>
+                              {authenticated ? (
+                              <h1 className='title'>{this.state.user.name}</h1>
+                              ) : (<input
+                                name="name"
+                                onBlur={this.handleChange}
+                                className='input'
+                                type='text'
+                                placeholder='Name'
+                              />)}
+                                {/* <span className='icon is-small is-left'>
                                   <i className='fas fa-user'></i>
-                                </span>
+                                </span> */}
                               </p>
                             </div>
                           </div>

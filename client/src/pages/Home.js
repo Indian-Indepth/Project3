@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import BgImage from "../assets/images/bg-image.png";
 import "../assets/css/style.css";
@@ -56,38 +56,48 @@ class Home extends Component {
     return (
       <section className='section'>
         <div className='container'>
-          <div className='columns'>
-            <div className='column center'>
-              <div className='column'>
+        <div className="">
+        <div className='columns '>
+            <div className='column'>
+            <div className="box ">
 
-              </div>
-              <div className='field has-addons '>
-                <div className='control is-expanded'>
+
+              <div className='field'>
+                <div className='control '>
                 {(this.state.user.userType === '')?
                 (<SelectUserType user={this.state.user} />)
                 :''
               }
-                {!authenticated ? (<input
+                {/* {!authenticated ? (<input
                     className='input is-fullwidth is-rounded is-large'
                     type='text'
                     placeholder='Email address...'
-                  />) : ''}
+                  />) : ''} */}
                 </div>
-                <div className='control'>
-                {!authenticated ? (<Link
-                    to='/signup'
+                <div className='section box center'>
+                {!authenticated ? (<a
+                    href='/signup'
                     type='submit'
-                    className='button is-primary is-rounded is-large'
+                    className='button is-primary is-large is-fullwidth is-rounded has-shadow'
                   >
                     Sign up today
-                  </Link>) : ''}
+                  </a>) : (<div className='media-content   '>
+                    <div className='content'>
+                      <span className='button is-fullwidth is-large is-static'>
+                        Welcome !
+                      </span>
+                    </div>
+                  </div>)}
                 </div>
               </div>
+            </div>
             </div>
             <figure className='column image center'>
               <img src={BgImage} alt='background' width='700' />
             </figure>
           </div>
+        </div>
+
         </div>
       </section>
     );

@@ -163,9 +163,9 @@ class SurveyPersonalInfo extends Component {
                                 type='text'
                                 placeholder='Name'
                               />)}
-                              <span className='icon is-small is-left'>
+                              {/* <span className='icon is-small is-left'>
                                 <i className='fas fa-user'></i>
-                              </span>
+                              </span> */}
                             </div>
                           </div>
                         </div>

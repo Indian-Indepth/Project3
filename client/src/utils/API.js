@@ -86,8 +86,8 @@ export default {
     });
   },
 
-  processPayment: function (userId, token, nonce, price) {
-    const paymentData = {nonce: nonce, price: price};
+  processPayment: function (userId, token, nonce, price, billingAddress) {
+    const paymentData = {nonce: nonce, price: price, billingAddress: billingAddress};
     return axios.post(`${server_url}/api/braintree/payment/${userId}`, {
         method: "POST",
         headers: {
@@ -98,27 +98,21 @@ export default {
         data: paymentData,
     })
         .then(response => {
-          console.log('API response payment');
-          console.log(response);
+          // console.log('API response payment');
+          // console.log(response);
           return response.json();
         })
         .catch(err => console.log(err));
   },
 
-  createOrder: function (userId, token, createOrderData) {
-    return axios.post(`${server_url}/api/order/create/${userId}`, {
-        method: "POST",
-        headers: {
-            Accept: 'application/json',
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({order: createOrderData})
-    })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log(err));
-  }
+  //Create pdf
+  createPDF: function (txnId) {
+    return axios.get(`${server_url}/api/pdf/${txnId}`,{ responseType: 'blob' });
+  },
+
+  //Transactions
+  getTransactions: function() {
+    return axios.get(`${server_url}/api/transaction`);
+  },
 
 };

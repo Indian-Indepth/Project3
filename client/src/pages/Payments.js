@@ -12,6 +12,7 @@ class Payments extends Component {
     error: null,
     authenticated: false,
     submitted: false,
+    showing: false
   };
 
   async componentDidMount() {
@@ -80,14 +81,17 @@ class Payments extends Component {
     this.props.handleNotAuthenticated();
   };
 
+  handleChange = ({ target: { value, name }}) => this.setState({ [name]: value })
+
   handleSubmit = (event, id) => {
     event.preventDefault();
+
   };
 
   async pay() {
     // Send the nonce to your server
     const { nonce } = await this.instance.requestPaymentMethod();
-    API.processPayment(this.state.user._id, this.state.clientToken, nonce, this.state.package.paid.price)
+    API.processPayment(this.state.user._id, this.state.clientToken, nonce, this.state.package.paid.price, this.state.billingAddress)
     .then(response => {
       this.setState({ submitted: true });
     })
@@ -95,6 +99,7 @@ class Payments extends Component {
   }
 
   render() {
+    const { showing } = this.state;
     let redirect = null;
     if (this.state.submitted) {
       redirect = <Redirect to='/' />;
@@ -127,6 +132,7 @@ class Payments extends Component {
                               name='userSubType'
                               value='free'
                               id='free'
+                              onChange={() => this.setState({ showing: false })}
                             />
                             &nbsp; <label htmlFor="free">Free - &nbsp;
                             {this.state.package
@@ -139,6 +145,7 @@ class Payments extends Component {
                               name='userSubType'
                               value='paid'
                               id='paid'
+                              onChange={() => this.setState({ showing: true })}
                             />
                             &nbsp; <label htmlFor="paid"> Paid - &nbsp;
                             {this.state.package
@@ -148,13 +155,14 @@ class Payments extends Component {
                         </div>
                       </div>
 
-                      <div className="box">
+                      <div className="box" style={{ display: (showing ? 'block' : 'none') }}>
                         <div className='field'>
                         Type your billing address here: <br />
 
                           <textarea
                             className='form-control'
                             name='billingAddress'
+                            onChange={this.handleChange}
                             placeholder='Type your billing address here...'
                             rows="7"
                             cols='100'

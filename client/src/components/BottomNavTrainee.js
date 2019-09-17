@@ -60,7 +60,7 @@ function BottomNavTrainee() {
 
           </Link>
           <Link to="/payments" className={
-              window.location.pathname === "/payments" ? "nav-item button is-large is-tab is-hidden-tablet is-active is-primary" : " nav-item button is-large is-tab is-hidden-tablet"
+              window.location.pathname === "/trainee-payments" ? "nav-item button is-large is-tab is-hidden-tablet is-active is-primary" : " nav-item button is-large is-tab is-hidden-tablet"
             }>
             <span className='icon'>
             <i className="fas fa-file-invoice"></i>

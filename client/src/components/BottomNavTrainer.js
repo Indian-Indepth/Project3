@@ -30,7 +30,7 @@ function BottomNavTrainer() {
               window.location.pathname === "/trainer-message" ? "nav-item button is-large is-tab is-hidden-tablet is-active is-primary" : " nav-item button is-large is-tab is-hidden-tablet"
             }>
             <span className='icon'>
-            <i class="fas fa-envelope-open-text"></i>
+            <i className="fas fa-envelope-open-text"></i>
             </span>{"  "}
 
           </Link>
