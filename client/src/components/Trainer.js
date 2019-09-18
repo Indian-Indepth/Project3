@@ -20,9 +20,9 @@ const Trainer = props => {
 
             </p>
           </div>
-          <button className='button is-medium is-fullwidth'>
+          <a href="/" className='button is-medium is-fullwidth'>
             Select your trainer
-          </button>
+          </a>
         </div>
       </article>
     </div>

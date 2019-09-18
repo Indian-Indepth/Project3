@@ -38,13 +38,13 @@ function Navbar(props) {
             </span>
             <span>Home</span>
           </Link>
-
-          <Link className='navbar-item' to='/ourtrainer'>
+          {props.user.userType === "Trainee" ?
+          (<Link className='navbar-item' to='/ourtrainer'>
             <span className='icon'>
               <i className='fa fa-table'></i>
             </span>
             &nbsp; Trainers
-          </Link>
+          </Link>) :("")}
 
           <Link className='navbar-item' to='/pricing'>
             <span className='icon'>
