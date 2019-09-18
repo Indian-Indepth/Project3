@@ -25,13 +25,13 @@ function Aside() {
               window.location.pathname === "/message" ? "is-active has-background-primary" : " "
             }>Message</Link>
         </li>
-        <li>
+        {/* <li>
           <Link
           to='editprofile'
             className={
               window.location.pathname === "/editprofile" ? "is-active has-background-primary" : " "
             }>Edit Profile</Link>
-        </li>
+        </li> */}
       </ul>
       <p className='menu-label'>Training</p>
       <ul className='menu-list'>
@@ -51,8 +51,8 @@ function Aside() {
       <p className='menu-label'>Transactions</p>
       <ul className='menu-list'>
         <li>
-          <Link to="payments" className={
-              window.location.pathname === "/trainee-payments" ? "is-active has-background-primary" : " "
+          <Link to="trainee-transaction" className={
+              window.location.pathname === "/trainee-transaction" ? "is-active has-background-primary" : " "
             }>Payments</Link>
         </li>
       </ul>

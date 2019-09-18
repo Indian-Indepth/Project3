@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Aside from "../components/Aside";
+import AsideTrainer from "../components/AsideTrainer";
 import API from "../utils/API";
-import BottomNavTrainee from "../components/BottomNavTrainee";
+import BottomNavTrainer from "../components/BottomNavTrainer";
 import "../assets/css/style.css";
 import DropIn from "braintree-web-drop-in-react";
 import { Redirect } from "react-router-dom";
 
-class Payments extends Component {
+class TrainerPayments extends Component {
   state = {
     user: {},
     error: null,
@@ -117,7 +117,7 @@ class Payments extends Component {
       return (
         <section className='main-content columns is-fullheight'>
         {redirect}
-          <Aside />
+          <AsideTrainer />
           <div className='box column is-10 has-background-white-bis'>
             <form onSubmit={this.handleSubmit}>
               <article className='box'>
@@ -217,7 +217,7 @@ class Payments extends Component {
               </article>
             </form>
           </div>
-          <BottomNavTrainee />
+          <BottomNavTrainer />
         </section>
       );
     }
@@ -225,4 +225,4 @@ class Payments extends Component {
   }
 }
 
-export default Payments;
+export default TrainerPayments;

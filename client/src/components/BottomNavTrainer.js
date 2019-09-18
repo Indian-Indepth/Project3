@@ -34,14 +34,14 @@ function BottomNavTrainer() {
             </span>{"  "}
 
           </Link>
-          <Link to="/trainer-editprofile" className={
+          {/* <Link to="/trainer-editprofile" className={
               window.location.pathname === "/trainer-editprofile" ? "nav-item button is-large is-tab is-hidden-tablet is-active is-primary" : " nav-item button is-large is-tab is-hidden-tablet"
             } >
             <span className='icon'>
             <i className="fas fa-user-edit"></i>
             </span>{"  "}
 
-          </Link>
+          </Link> */}
           <Link to="/yourclient" className={
               window.location.pathname === "/yourclient" ? "nav-item button is-large is-tab is-hidden-tablet is-active is-primary" : " nav-item button is-large is-tab is-hidden-tablet"
             }>
@@ -51,8 +51,8 @@ function BottomNavTrainer() {
 
           </Link>
 
-          <Link to="/trainer-payments" className={
-              window.location.pathname === "/trainer-payments" ? "nav-item button is-large is-tab is-hidden-tablet is-active is-primary" : " nav-item button is-large is-tab is-hidden-tablet"
+          <Link to="/transations" className={
+              window.location.pathname === "/transactions" ? "nav-item button is-large is-tab is-hidden-tablet is-active is-primary" : " nav-item button is-large is-tab is-hidden-tablet"
             }>
             <span className='icon'>
             <i className="fas fa-file-invoice"></i>

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Aside from "../components/Aside";
 import BottomNavTrainee from "../components/BottomNavTrainee";
 import "../assets/css/style.css";
+import API from "../utils/API";
 
 class TraineeProfile extends Component {
   static propTypes = {
@@ -18,9 +19,12 @@ class TraineeProfile extends Component {
 
   state = {
     user: {},
+    transactions:{},
     error: null,
     authenticated: false,
   };
+
+
 
   componentDidMount() {
     // Fetch does not send cookies. So you should add credentials: 'include'
@@ -49,13 +53,39 @@ class TraineeProfile extends Component {
           error: "Failed to authenticate user",
         });
       });
+
+
+      API.getTransactions()
+      .then(response => {
+        if (response.status === 200) {
+          return response.data;
+        } else {
+          throw new Error("failed to fetch transaction");
+        }
+      })
+      .then(responseJson => {
+        console.log(responseJson);
+        this.setState({
+          authenticated: true,
+          transactions: responseJson,
+        });
+        //console.log(this.state);
+      })
+      .catch(error => {
+        this.setState({
+          authenticated: false,
+          error: "Failed to authenticate user",
+        });
+      });
   }
+
 
   _handleNotAuthenticated = () => {
     this.setState({ authenticated: false });
   };
 
   render() {
+    console.log(this.state.transactions)
     const { authenticated } = this.state;
     return (
       <section className='main-content columns is-fullheight'>
@@ -104,7 +134,7 @@ class TraineeProfile extends Component {
                     <div className='content'>
                       <section className='section'>
                         <h1 className='title'>{this.state.user.screenName}</h1>
-                        <small>johnsmith@gmail.com</small>
+                        {/* <small>johnsmith@gmail.com</small> */}
                         <hr />
                         <h6 className='has-text-weight-light'>
                           Contact Information
@@ -114,23 +144,23 @@ class TraineeProfile extends Component {
                             <p className='subtitle is-6 has-text-weight-bold'>
                               Phone:&emsp;
                               <span className='has-text-weight-light is-right section'>
-                                647-949-8484
+                                {this.state.user.phoneNumber}
                               </span>
                             </p>
                           </li>
-                          <li>
+                          {/* <li>
                             <p className='subtitle is-6 has-text-weight-bold '>
                               Email:&emsp;&nbsp;
                               <span className='section has-text-weight-light'>
                                 johnsmith@gmail.com
                               </span>
                             </p>
-                          </li>
+                          </li> */}
                           <li>
                             <p className='subtitle is-6 has-text-weight-bold '>
                               Address:
                               <span className='section has-text-weight-light'>
-                                240 Wellesley St. E Toronto, ON, M4X 1G5
+                                {this.state.transactions.billingAddress}
                               </span>
                             </p>
                           </li>
@@ -142,17 +172,17 @@ class TraineeProfile extends Component {
                         <ul className=''>
                           <li>
                             <p className='subtitle is-6 has-text-weight-bold '>
-                              Birthday:
+                              Height:
                               <span className='section has-text-weight-light'>
-                                June 25, 1991
+                                {this.state.user.height}
                               </span>
                             </p>
                           </li>
                           <li>
                             <p className='subtitle is-6 has-text-weight-bold '>
-                              Gender:&emsp;
+                              Weight:&emsp;
                               <span className='section has-text-weight-light'>
-                                Male
+                              {this.state.user.weight}
                               </span>
                             </p>
                           </li>
