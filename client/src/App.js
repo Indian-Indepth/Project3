@@ -97,8 +97,6 @@ class App extends Component {
 
   render() {
     const authenticated = this.state;
-    console.log('Authenticated:')
-    console.log(authenticated);
     return (
       <div>
         <Router>
