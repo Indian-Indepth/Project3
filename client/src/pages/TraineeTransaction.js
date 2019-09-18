@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Aside from "../components/Aside";
 import "../assets/css/style.css";
-import BottomNav from "../components/BottomNavTrainee";
+import BottomNavTrainee from "../components/BottomNavTrainee";
 import API from "../utils/API";
 import { saveAs } from "file-saver";
 
@@ -11,7 +11,7 @@ class TraineeTransactions extends Component {
     error: null,
     authenticated: false,
     submitted: false,
-    transactions: {},
+    transactions: [],
   };
 
   componentDidMount() {
@@ -43,10 +43,13 @@ class TraineeTransactions extends Component {
     console.log("CreateAndDownloadPDF");
     console.log(txnId);
     API.createPDF(txnId).then(res => {
+      console.log(res);
       const pdfBlob = new Blob([res.data], { type: "application/pdf" });
       saveAs(pdfBlob, "newPdf.pdf");
     });
   };
+
+
 
   handleSubmit = (event, id) => {
     event.preventDefault();
@@ -60,46 +63,41 @@ class TraineeTransactions extends Component {
         </div>
       );
     } else {
-      var txns = this.state.transactions;
-
-      let menuItems = [];
-
-      for (var i = 0; i < txns.length; i++) {
-        menuItems.push(
-          <h1 className='title is-5'>
-            Transaction ID:{" "}
-            <span className=' has-color-primary'>{txns[i].transactionId}</span>
-          </h1>
-        );
-        menuItems.push(
-          <h1 className='title is-5'>{txns[i].billingAddress}</h1>
-        );
-        menuItems.push(<h1 className='title is-5'>{txns[i].amount}</h1>);
-        menuItems.push(
-          <form onSubmit={this.handleSubmit}>
-            <button
-              type='button'
-              className='button'
-              onClick={() => {
-                this.createAndDownloadPdf(txns[i]._id);
-              }}
-            >
-              Create PDF
-            </button>
-            <hr/>
-          </form>
-        );
-      }
-
       return (
         <section className='main-content columns is-fullheight'>
           <Aside />
           <div className='box column is-10 has-background-white-bis'>
             <section className='section'>
-              <div className='section box '>{menuItems}</div>
+              <div className='section notification '>
+                {this.state.transactions.map((txn, i) => (
+                  <div className='box'>
+                    <div className='box'>
+                      <h1 className='subtitle is-5'>
+                        Transaction ID:
+                        <span className='has-color-primary'>
+                          {txn.transactionId}
+                        </span>
+                      </h1>
+
+                      <h1 className='subtitle is-5'>
+                        Billing Address: {txn.billingAddress}
+                      </h1>
+
+                      <h1 className='subtitle is-5'>Amount: {txn.amount}</h1>
+                      <button
+                        type='button'
+                        className='button is-primary is-text-right	is-clearfix'
+                        onClick={this.createAndDownloadPdf.bind(this, txn._id)}
+                      >
+                        Create PDF
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </section>
           </div>
-          <BottomNav />
+          <BottomNavTrainee />
         </section>
       );
     }
