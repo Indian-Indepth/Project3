@@ -73,24 +73,31 @@ class Transactions extends Component {
               <div className='section notification '>
 
                 {this.state.transactions.map((txn, i) => (
-                  <div>
-                    <h1 className='title is-5'>
+                  <div className="box">
+                  <div className="box">
+                  <h1 className='subtitle is-5'>
                       Transaction ID:
                       <span className='has-color-primary'>
                         {txn.transactionId}
                       </span>
                     </h1>
 
-                    <h1 className='title is-5'>{txn.billingAddress}</h1>
+                    <h1 className='subtitle is-5'>Billing Address: {txn.billingAddress}</h1>
 
-                    <h1 className='title is-5'>{txn.amount}</h1>
+                    <h1 className='subtitle is-5'>Amount: {txn.amount}</h1>
                     <button
                       type='button'
-                      className='button'
+                      className='button is-primary is-text-right	is-clearfix'
                       onClick={this.createAndDownloadPdf.bind(this, txn._id)}
                     >
                       Create PDF
                     </button>
+
+                  </div>
+
+
+
+
                   </div>
                 ))}
 
