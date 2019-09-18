@@ -20,6 +20,9 @@ function TraineePrice() {
                     <p className='notification is-marginless subtitle has-text-info is-2 has-background-white has-text-centered'>
                       Free
                     </p>
+                    <h1 className='has-text-centered subtitle has-text-info'>
+                      for 1 month
+                    </h1>
                     {/* <h1 className='has-text-centered subtitle has-text-info'></h1> */}
                     <div className='card-content '>
                       <ul className='has-text-info notification is-marginless'>

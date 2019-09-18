@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Aside from "../components/Aside";
+import Faker from 'faker';
 import "../assets/css/style.css";
 import BottomNavTrainee from "../components/BottomNavTrainee";
 
@@ -16,20 +17,18 @@ class YourTrainer extends Component {
                   <div className='media-left'>
                     <figure className='image is-256x256'>
                       <img
-                        src='https://bulma.io/images/placeholders/256x256.png'
+                        src={Faker.internet.avatar()}
                         alt='avatar'
                       />
                     </figure>
                   </div>
                   <div className='media-content'>
                     <div className='content'>
-                      <p>
-                        <strong>John Smith</strong> <small>@johnsmith</small>{" "}
+                    <p>
+                        <strong>{Faker.internet.userName()}</strong> <small>{Faker.internet.email()}</small>{" "}
                         <small>31m</small>
                         <br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aenean efficitur sit amet massa fringilla egestas.
-                        Nullam condimentum luctus turpis.
+                        {Faker.lorem.paragraphs()}
                       </p>
                     </div>
 

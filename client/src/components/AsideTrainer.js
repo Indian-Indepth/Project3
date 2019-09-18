@@ -24,13 +24,13 @@ function AsideTrainer() {
               window.location.pathname === "/trainer-message" ? "is-active has-background-primary" : " "
             }>Message</Link>
         </li>
-        <li>
+        {/* <li>
           <Link
           to='trainer-editprofile'
             className={
               window.location.pathname === "/trainer-editprofile" ? "is-active has-background-primary" : " "
             }>Edit Profile</Link>
-        </li>
+        </li> */}
       </ul>
       <p className='menu-label'>Training</p>
       <ul className='menu-list'>
@@ -46,8 +46,8 @@ function AsideTrainer() {
       <p className='menu-label'>Transactions</p>
       <ul className='menu-list'>
         <li>
-          <Link to="trainer-payments" className={
-              window.location.pathname === "/trainer-payments" ? "is-active has-background-primary" : " "
+          <Link to="transactions" className={
+              window.location.pathname === "/transactions" ? "is-active has-background-primary" : " "
             }>Payments</Link>
         </li>
       </ul>

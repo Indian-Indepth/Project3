@@ -6,57 +6,48 @@ import BottomNavTrainer from "../components/BottomNavTrainer";
 
 
 class TrainerProfile extends Component {
-//   static propTypes = {
-//     user: PropTypes.shape({
-//       name: PropTypes.string,
-//       profileImageUrl: PropTypes.string,
-//       twitterId: PropTypes.string,
-//       screenName: PropTypes.string,
-//       _id: PropTypes.string,
-//     }),
-//   };
 
-//   state = {
-//     user: {},
-//     error: null,
-//     authenticated: false,
-//   };
+  state = {
+    user: {},
+    error: null,
+    authenticated: false,
+  };
 
-//   componentDidMount() {
-//     // Fetch does not send cookies. So you should add credentials: 'include'
-//     fetch("http://localhost:4000/auth/login/success", {
-//       method: "GET",
-//       credentials: "include",
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//         "Access-Control-Allow-Credentials": true,
-//       },
-//     })
-//       .then(response => {
-//         if (response.status === 200) return response.json();
-//         throw new Error("failed to authenticate user");
-//       })
-//       .then(responseJson => {
-//         this.setState({
-//           authenticated: true,
-//           user: responseJson.user,
-//         });
-//       })
-//       .catch(error => {
-//         this.setState({
-//           authenticated: false,
-//           error: "Failed to authenticate user",
-//         });
-//       });
-//   }
+  componentDidMount() {
+    // Fetch does not send cookies. So you should add credentials: 'include'
+    fetch("http://localhost:4000/auth/login/success", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },
+    })
+      .then(response => {
+        if (response.status === 200) return response.json();
+        throw new Error("failed to authenticate user");
+      })
+      .then(responseJson => {
+        this.setState({
+          authenticated: true,
+          user: responseJson.user,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          authenticated: false,
+          error: "Failed to authenticate user",
+        });
+      });
+  }
 
-//   _handleNotAuthenticated = () => {
-//     this.setState({ authenticated: false });
-//   };
+  _handleNotAuthenticated = () => {
+    this.setState({ authenticated: false });
+  };
 
   render() {
-    //const { authenticated } = this.state;
+    const { authenticated } = this.state;
     return (
       <section className='main-content columns is-fullheight'>
         <AsideTrainer
@@ -70,11 +61,11 @@ class TrainerProfile extends Component {
                 <article className='columns is-multiline'>
                   <div className='column is-one-quarter'>
                     <figure className='image is-256x256'>
-                    <img
+                    {/* <img
                           src='https://bulma.io/images/placeholders/256x256.png'
                           alt='avatar'
-                        />
-                      {/* {authenticated ? (
+                        /> */}
+                      {authenticated ? (
                         <img
                           src={this.state.user.profileImageUrl}
                           alt='avatar'
@@ -84,9 +75,9 @@ class TrainerProfile extends Component {
                           src='https://bulma.io/images/placeholders/256x256.png'
                           alt='avatar'
                         />
-                      )} */}
+                      )}
                     </figure>
-                    <div className='section file is-centered'>
+                    {/* <div className='section file is-centered'>
                       <label className='file-label'>
                         <input
                           className='file-input'
@@ -100,14 +91,14 @@ class TrainerProfile extends Component {
                           <span className='file-label'>Upload your photo</span>
                         </span>
                       </label>
-                    </div>
+                    </div> */}
                   </div>
                   <div className='column auto'>
                     <div className='content'>
                       <section className='section'>
-                      <h1 className='title'>John Trainer</h1>
-                        {/* <h1 className='title'>{this.state.user.screenName}</h1> */}
-                        <small>johnsmith@gmail.com</small>
+
+                        <h1 className='title'>{this.state.user.screenName}</h1>
+
                         <hr />
                         <h6 className='has-text-weight-light'>
                           Contact Information
@@ -117,26 +108,12 @@ class TrainerProfile extends Component {
                             <p className='subtitle is-6 has-text-weight-bold'>
                               Phone:&emsp;
                               <span className='has-text-weight-light is-right section'>
-                                647-949-8484
+                              {this.state.user.phoneNumber}
                               </span>
                             </p>
                           </li>
-                          <li>
-                            <p className='subtitle is-6 has-text-weight-bold '>
-                              Email:&emsp;&nbsp;
-                              <span className='section has-text-weight-light'>
-                                johnsmith@gmail.com
-                              </span>
-                            </p>
-                          </li>
-                          <li>
-                            <p className='subtitle is-6 has-text-weight-bold '>
-                              Address:
-                              <span className='section has-text-weight-light'>
-                                240 Wellesley St. E Toronto, ON, M4X 1G5
-                              </span>
-                            </p>
-                          </li>
+
+
                         </ul>
                         <hr />
                         <h6 className='has-text-weight-light'>
@@ -145,17 +122,25 @@ class TrainerProfile extends Component {
                         <ul className=''>
                           <li>
                             <p className='subtitle is-6 has-text-weight-bold '>
-                              Birthday:
+                              Specialization:
                               <span className='section has-text-weight-light'>
-                                June 25, 1991
+                                {this.state.user.specialize}
                               </span>
                             </p>
                           </li>
                           <li>
                             <p className='subtitle is-6 has-text-weight-bold '>
-                              Gender:&emsp;
+                              Training:&emsp;
                               <span className='section has-text-weight-light'>
-                                Male
+                              {this.state.user.training}
+                              </span>
+                            </p>
+                          </li>
+                          <li>
+                            <p className='subtitle is-6 has-text-weight-bold '>
+                              Experience:&emsp;
+                              <span className='section has-text-weight-light'>
+                              {this.state.user.experience}
                               </span>
                             </p>
                           </li>

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import AsideTrainer from "../components/AsideTrainer";
+import Aside from "../components/Aside";
 import "../assets/css/style.css";
-import BottomNavTrainer from "../components/BottomNavTrainer";
+import BottomNav from "../components/BottomNavTrainee";
 import API from "../utils/API";
 import { saveAs } from "file-saver";
 
-class Transactions extends Component {
+class TraineeTransactions extends Component {
   state = {
     user: {},
     error: null,
     authenticated: false,
     submitted: false,
-    transactions: [],
+    transactions: {},
   };
 
   componentDidMount() {
@@ -43,15 +43,10 @@ class Transactions extends Component {
     console.log("CreateAndDownloadPDF");
     console.log(txnId);
     API.createPDF(txnId).then(res => {
-      console.log(res);
       const pdfBlob = new Blob([res.data], { type: "application/pdf" });
       saveAs(pdfBlob, "newPdf.pdf");
     });
   };
-
-  apple = (google) => {
-    console.log('apple google: '+google);
-  }
 
   handleSubmit = (event, id) => {
     event.preventDefault();
@@ -65,43 +60,50 @@ class Transactions extends Component {
         </div>
       );
     } else {
+      var txns = this.state.transactions;
+
+      let menuItems = [];
+
+      for (var i = 0; i < txns.length; i++) {
+        menuItems.push(
+          <h1 className='title is-5'>
+            Transaction ID:{" "}
+            <span className=' has-color-primary'>{txns[i].transactionId}</span>
+          </h1>
+        );
+        menuItems.push(
+          <h1 className='title is-5'>{txns[i].billingAddress}</h1>
+        );
+        menuItems.push(<h1 className='title is-5'>{txns[i].amount}</h1>);
+        menuItems.push(
+          <form onSubmit={this.handleSubmit}>
+            <button
+              type='button'
+              className='button'
+              onClick={() => {
+                this.createAndDownloadPdf(txns[i]._id);
+              }}
+            >
+              Create PDF
+            </button>
+            <hr/>
+          </form>
+        );
+      }
+
       return (
         <section className='main-content columns is-fullheight'>
-          <AsideTrainer />
+          <Aside />
           <div className='box column is-10 has-background-white-bis'>
             <section className='section'>
-              <div className='section notification '>
-
-                {this.state.transactions.map((txn, i) => (
-                  <div>
-                    <h1 className='title is-5'>
-                      Transaction ID:
-                      <span className='has-color-primary'>
-                        {txn.transactionId}
-                      </span>
-                    </h1>
-
-                    <h1 className='title is-5'>{txn.billingAddress}</h1>
-
-                    <h1 className='title is-5'>{txn.amount}</h1>
-                    <button
-                      type='button'
-                      className='button'
-                      onClick={this.createAndDownloadPdf.bind(this, txn._id)}
-                    >
-                      Create PDF
-                    </button>
-                  </div>
-                ))}
-
-              </div>
+              <div className='section box '>{menuItems}</div>
             </section>
           </div>
-          <BottomNavTrainer />
+          <BottomNav />
         </section>
       );
     }
   }
 }
 
-export default Transactions;
+export default TraineeTransactions;

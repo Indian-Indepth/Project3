@@ -28,6 +28,8 @@ import TraineePayments from "./pages/TraineePayments";
 import Transactions from "./pages/Transactions";
 import Payments from "./pages/Payments";
 import OurTrainer from "./pages/OurTrainer"
+import TraineeTransaction from "./pages/TraineeTransaction";
+import TrainerPayments from "./pages/TrainerPayments";
 
 
 class App extends Component {
@@ -95,8 +97,6 @@ class App extends Component {
 
   render() {
     const authenticated = this.state;
-    console.log('Authenticated:')
-    console.log(authenticated);
     return (
       <div>
         <Router>
@@ -137,6 +137,8 @@ class App extends Component {
             handleNotAuthenticated = {this._handleNotAuthenticated}
             user = {this.state.user}
             />} />
+            <Route exact path='/trainee-transaction' component={TraineeTransaction} />
+            <Route exact path='/trainer-payments' component={TrainerPayments} />
           </Switch>
           <Footer/>
         </Router>

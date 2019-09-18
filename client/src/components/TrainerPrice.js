@@ -21,7 +21,7 @@ function TrainerPrice() {
                       Free
                     </p>
                     <h1 className='has-text-centered subtitle has-text-info'>
-                      2 Fitness Clients
+                      for 1 month
                     </h1>
                     <div className='card-content '>
                       <ul className='has-text-info notification is-marginless'>
@@ -51,10 +51,10 @@ function TrainerPrice() {
                       TRAINER
                     </span>
                     <p className='notification is-marginless subtitle has-text-primary is-2 has-background-white has-text-centered'>
-                      $ 9.99<small className='is-size-5'>/mo</small>
+                      $ 5.99<small className='is-size-5'>/mo</small>
                     </p>
                     <h1 className='has-text-centered subtitle has-text-primary'>
-                      Maximum 15 Clients
+
                     </h1>
                     <div className='card-content '>
                       <div className='card-content '>

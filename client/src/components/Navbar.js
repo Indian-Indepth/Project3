@@ -39,11 +39,11 @@ function Navbar(props) {
             <span>Home</span>
           </Link>
 
-          <Link className='navbar-item' to='/features'>
+          <Link className='navbar-item' to='/ourtrainer'>
             <span className='icon'>
               <i className='fa fa-table'></i>
             </span>
-            &nbsp; Features
+            &nbsp; Trainers
           </Link>
 
           <Link className='navbar-item' to='/pricing'>
@@ -77,8 +77,10 @@ function Navbar(props) {
                     </span>
                     <span>Sign In</span>
                   </Link>
-                ) : (
-                  <Link className='navbar-item' to='/profile'>
+                  ) : ("" )}
+                  </div>
+                  <div>
+                  <Link className='navbar-item' to={props.user.userType === "Trainer" ? '/trainer-profile' : '/profile'}>
                   Welcome {props.user.name}! &nbsp;
                     <figure className='image is-24x24'>
                       <img
@@ -89,8 +91,37 @@ function Navbar(props) {
                     </figure>
 
                   </Link>
-                )}
-              </div>
+                  </div>
+
+                  {/* <div>
+                  {props.user.userType === "Trainer" ? (<Link className='navbar-item' to='/trainer-profile'>
+                  Welcome {props.user.name}! &nbsp;
+                    <figure className='image is-24x24'>
+                      <img
+                        className='is-rounded'
+                        src={props.user.profileImageUrl}
+                        alt='account'
+                      />
+                    </figure>
+
+                  </Link>): ("")}
+
+                  {props.user.userType === "Trainee" ? (<Link className='navbar-item' to='/profile'>
+                  Welcome {props.user.name}! &nbsp;
+                    <figure className='image is-24x24'>
+                      <img
+                        className='is-rounded'
+                        src={props.user.profileImageUrl}
+                        alt='account'
+                      />
+                    </figure>
+
+                  </Link>): ("")}
+
+                  </div> */}
+
+                {/* )} */}
+
               <div className='control'>
                 {!authenticated ? (
                   <Link className='button is-primary' to='/signup'>

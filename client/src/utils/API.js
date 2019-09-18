@@ -115,4 +115,9 @@ export default {
     return axios.get(`${server_url}/api/transaction`);
   },
 
+  //Transactions
+  getTrainers: function() {
+    return axios.get(`${server_url}/api/users/usertype/Trainer`);
+  },
+
 };
