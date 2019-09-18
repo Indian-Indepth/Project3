@@ -13,4 +13,6 @@ router
   .post(usersController.updateAll)
   .delete(usersController.remove);
 
+router.route("/usertype/:userType").get(usersController.findByUserType)
+
 module.exports = router;
