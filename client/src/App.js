@@ -119,7 +119,11 @@ class App extends Component {
             <Route exact path='/trainer-profile' component={TrainerProfile} />
             <Route exact path='/message' component={Message} />
             <Route exact path='/trainer-message' component={TrainerMessage} />
-            <Route exact path='/progress' component={Progress} />
+            <Route exact path='/progress' component={()=><Progress 
+            authenticated = {authenticated}
+            handleNotAuthenticated = {this._handleNotAuthenticated}
+            user = {this.state.user}/>
+            }/>
             <Route exact path='/editprofile' component={EditUserProfile} />
             <Route exact path='/trainer-editprofile' component={TrainerEditUserProfile} />
             <Route exact path='/yourtrainer' component={YourTrainer} />

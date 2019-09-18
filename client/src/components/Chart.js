@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Line } from 'react-chartjs-2';
 
+
 const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
@@ -23,17 +24,28 @@ const data = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
+      data: [65, 59, 80, 81, 56, 55, 40,56]
     }
   ]
 };
 
-export default class LineDemo extends Component {
+export default class Chart extends Component {
+  constructor(props){
+    super(props);
+
+    state = {
+      user: {},
+      error: null,
+      authenticated: false,
+      submitted: false,
+    };
+  }
+
   render() {
     return (
       <div>
         <h2>Line Example</h2>
-        <Line ref="chart" data={data} />
+        <Line ref="chart" data={data} weight={this.state.user.weight} />
       </div>
     );
   }
