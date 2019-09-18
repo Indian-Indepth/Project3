@@ -80,6 +80,7 @@ function Navbar(props) {
                   ) : ("" )}
                   </div>
                   <div>
+                  {authenticated ? (
                   <Link className='navbar-item' to={props.user.userType === "Trainer" ? '/trainer-profile' : '/profile'}>
                   Welcome {props.user.name}! &nbsp;
                     <figure className='image is-24x24'>
@@ -90,7 +91,7 @@ function Navbar(props) {
                       />
                     </figure>
 
-                  </Link>
+                  </Link>) : ("")}
                   </div>
 
                   {/* <div>
