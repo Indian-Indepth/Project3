@@ -38,13 +38,13 @@ function Navbar(props) {
             </span>
             <span>Home</span>
           </Link>
-
-          <Link className='navbar-item' to='/ourtrainer'>
+          {props.user.userType === "Trainee" ?
+          (<Link className='navbar-item' to='/ourtrainer'>
             <span className='icon'>
               <i className='fa fa-table'></i>
             </span>
             &nbsp; Trainers
-          </Link>
+          </Link>) :("")}
 
           <Link className='navbar-item' to='/pricing'>
             <span className='icon'>
@@ -80,6 +80,7 @@ function Navbar(props) {
                   ) : ("" )}
                   </div>
                   <div>
+                  {authenticated ? (
                   <Link className='navbar-item' to={props.user.userType === "Trainer" ? '/trainer-profile' : '/profile'}>
                   Welcome {props.user.name}! &nbsp;
                     <figure className='image is-24x24'>
@@ -90,7 +91,7 @@ function Navbar(props) {
                       />
                     </figure>
 
-                  </Link>
+                  </Link>) : ("")}
                   </div>
 
                   {/* <div>

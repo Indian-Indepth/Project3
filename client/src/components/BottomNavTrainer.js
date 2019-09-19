@@ -51,7 +51,7 @@ function BottomNavTrainer() {
 
           </Link>
 
-          <Link to="/transations" className={
+          <Link to="/transactions" className={
               window.location.pathname === "/transactions" ? "nav-item button is-large is-tab is-hidden-tablet is-active is-primary" : " nav-item button is-large is-tab is-hidden-tablet"
             }>
             <span className='icon'>
