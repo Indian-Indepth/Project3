@@ -17,7 +17,10 @@
 
 # Team Members
 
-- Raj Kumar Shahu :Front-end
-- Sheleeza Ranmall :Front-end
-- Ravi Joshi :Back-end
-- Tej Subedi :Back-end
+**FRONT-END**
+**Raj Kumar Shahu**
+**Sheleeza Ranmall**
+
+**BACK-END**
+**Ravi Joshi**
+**Tej Subedi**
